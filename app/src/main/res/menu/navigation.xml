@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_new_request"
+        android:icon="@drawable/ic_create"
+        android:title="@string/title_new_request_short"/>
+
+    <item
+        android:id="@+id/navigation_requests"
+        android:icon="@drawable/ic_assignment_done"
+        android:title="@string/title_lookup_requests_short"/>
+
+    <item
+        android:id="@+id/navigation_help"
+        android:icon="@drawable/ic_info"
+        android:title="@string/title_help"/>
+
+</menu>

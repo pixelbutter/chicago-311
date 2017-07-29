@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Chicago 311</string>
+    <string name="title_new_request">New request</string>
+    <string name="title_new_request_short">New</string>
+    <string name="title_lookup_requests">Lookup requests</string>
+    <string name="title_lookup_requests_short">Requests</string>
+    <string name="title_help">Help</string>
+
+</resources>
