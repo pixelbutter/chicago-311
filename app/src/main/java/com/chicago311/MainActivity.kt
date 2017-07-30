@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import com.chicago311.create.CreateRequestFragment
+import com.chicago311.create.NewRequestListFragment
 import com.chicago311.help.HelpFragment
 import com.chicago311.requests.RequestsFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
             val selected: Boolean
             when (item.itemId) {
                 R.id.navigation_new_request -> {
-                    newFragment = CreateRequestFragment.newInstance()
+                    newFragment = NewRequestListFragment.newInstance()
                     selected = true
                 }
                 R.id.navigation_requests -> {
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
                     selected = true
                 }
                 else -> {
-                    newFragment = CreateRequestFragment.newInstance()
+                    newFragment = NewRequestListFragment.newInstance()
                     selected = false
                 }
             }
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragmentContainer, CreateRequestFragment.newInstance())
+        transaction.replace(R.id.fragmentContainer, NewRequestListFragment.newInstance())
         transaction.commit()
     }
 }
