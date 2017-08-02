@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion rootProject.ext.sdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -38,10 +40,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     compile "com.google.dagger:dagger:$daggerVersion"
-    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     compile "com.google.dagger:dagger-android:$daggerVersion"
     compile "com.google.dagger:dagger-android-support:$daggerVersion"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 
     // Retrofit
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
@@ -58,9 +60,9 @@ dependencies {
     // Lifecycle components
     compile "android.arch.lifecycle:runtime:$archComponentsVersion"
     compile "android.arch.lifecycle:extensions:$archComponentsVersion"
-    annotationProcessor "android.arch.lifecycle:compiler:$archComponentsVersion"
+    kapt "android.arch.lifecycle:compiler:$archComponentsVersion"
     compile "android.arch.persistence.room:runtime:$archComponentsVersion"
-    annotationProcessor "android.arch.persistence.room:compiler:$archComponentsVersion"
-    testCompile "android.arch.persistence.room:testing:$archComponentsVersion"
-    compile "android.arch.persistence.room:rxjava2:$archComponentsVersion"
+//    kapt "android.arch.persistence.room:compiler:$archComponentsVersion"
+//    testCompile "android.arch.persistence.room:testing:$archComponentsVersion"
+//    compile "android.arch.persistence.room:rxjava2:$archComponentsVersion"
 }

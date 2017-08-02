@@ -5,17 +5,11 @@ import android.arch.lifecycle.MediatorLiveData
 import android.arch.lifecycle.ViewModel
 import com.chicago311.api.ServiceRequest
 import com.chicago311.repository.ServiceRequestRepository
-import com.chicago311.repository.ServiceRequestRepositoryImpl
+import javax.inject.Inject
 
-class ServiceListViewModel : ViewModel() {
+class ServiceListViewModel @Inject constructor(private val repository: ServiceRequestRepository) : ViewModel() {
 
-    private val availableServices: MediatorLiveData<List<ServiceRequest>>
-    private val repository: ServiceRequestRepository
-
-    init {
-        availableServices = MediatorLiveData()
-        repository = ServiceRequestRepositoryImpl()
-    }
+    private val availableServices = MediatorLiveData<List<ServiceRequest>>()
 
     fun getApiResponse(): LiveData<List<ServiceRequest>> {
         return availableServices
