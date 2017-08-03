@@ -49,6 +49,15 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
     compile "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
     compile "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    compile 'com.squareup.okhttp3:logging-interceptor:3.7.0'
+
+    // LeakCanary
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+
+    // Timber
+    compile 'com.jakewharton.timber:timber:4.5.1'
 
     // Moshi
     compile 'com.squareup.moshi:moshi:1.4.0'

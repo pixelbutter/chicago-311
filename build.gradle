@@ -30,6 +30,7 @@ ext {
     supportLibVersion = '26.0.0'
     daggerVersion = '2.11'
     retrofitVersion = '2.3.0'
+    leakCanaryVersion = '1.5.1'
     archComponentsVersion = '1.0.0-alpha7'
 }
 
