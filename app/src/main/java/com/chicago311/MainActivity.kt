@@ -14,29 +14,42 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportActionBar?.subtitle = getString(R.string.app_name)
 
         navigation.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { item ->
             val newFragment: Fragment
             val selected: Boolean
+            val showExpandedToolbar: Boolean
+            val toolbarTitle: String
             when (item.itemId) {
                 R.id.navigation_new_request -> {
+                    toolbarTitle = getString(R.string.title_new_request)
                     newFragment = NewRequestListFragment.newInstance()
                     selected = true
+                    showExpandedToolbar = true
                 }
                 R.id.navigation_requests -> {
+                    toolbarTitle = getString(R.string.title_lookup_requests)
                     newFragment = RequestsFragment.newInstance()
                     selected = true
+                    showExpandedToolbar = false
                 }
                 R.id.navigation_help -> {
+                    toolbarTitle = getString(R.string.title_help)
                     newFragment = HelpFragment.newInstance()
                     selected = true
+                    showExpandedToolbar = false
                 }
                 else -> {
+                    toolbarTitle = getString(R.string.app_name)
                     newFragment = NewRequestListFragment.newInstance()
                     selected = false
+                    showExpandedToolbar = false
                 }
             }
+
+            mainToolbar.title = toolbarTitle
+            collapsingToolbar.title = toolbarTitle
+            appbar.setExpanded(showExpandedToolbar, true)
             supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, newFragment).commit()
             return@OnNavigationItemSelectedListener selected
         })
