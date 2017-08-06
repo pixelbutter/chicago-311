@@ -71,7 +71,7 @@ dependencies {
     compile "android.arch.lifecycle:extensions:$archComponentsVersion"
     kapt "android.arch.lifecycle:compiler:$archComponentsVersion"
     compile "android.arch.persistence.room:runtime:$archComponentsVersion"
-//    kapt "android.arch.persistence.room:compiler:$archComponentsVersion"
-//    testCompile "android.arch.persistence.room:testing:$archComponentsVersion"
-//    compile "android.arch.persistence.room:rxjava2:$archComponentsVersion"
+    kapt "android.arch.persistence.room:compiler:$archComponentsVersion"
+    testCompile "android.arch.persistence.room:testing:$archComponentsVersion"
+    compile "android.arch.persistence.room:rxjava2:$archComponentsVersion"
 }

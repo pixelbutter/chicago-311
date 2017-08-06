@@ -1,4 +1,4 @@
-package com.chicago311.api
+package com.chicago311.data.model
 
 class ServiceDetailsResponse {
     // todo

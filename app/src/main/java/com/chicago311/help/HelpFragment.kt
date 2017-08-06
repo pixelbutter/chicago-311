@@ -17,7 +17,7 @@ class HelpFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_help);
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_help)
     }
 
     companion object {

@@ -7,5 +7,5 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = arrayOf(AppModule::class))
 interface AppComponent {
-    fun inject(fragment: NewRequestListFragment);
+    fun inject(fragment: NewRequestListFragment)
 }

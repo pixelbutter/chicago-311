@@ -6,4 +6,6 @@
     <string name="title_lookup_requests_short">Requests</string>
     <string name="title_help">Help</string>
 
+    <string name="loading_with_ellipsis">Loading&#8230;</string>
+    <string name="error_message_request_list_failed">Couldn\'t load services :(</string>
 </resources>

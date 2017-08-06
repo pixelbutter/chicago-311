@@ -12,6 +12,6 @@ class ViewModelFactory @Inject constructor(private val serviceListViewModel: Ser
         if (modelClass?.isAssignableFrom(ServiceListViewModel::class.java) == true) {
             return serviceListViewModel as T
         }
-        throw IllegalArgumentException("Unknown class name");
+        throw IllegalArgumentException("Unknown class name")
     }
 }

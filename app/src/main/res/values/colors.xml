@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="colorBackgroundSecondary">#E0E0E0</color> <!-- todo move to theme def -->
+    <color name="colorPrimary">#2D3142</color>
+    <color name="colorPrimaryDark">#1F212D</color>
+    <color name="colorAccent">#FC5928</color>
+    <color name="colorBackgroundSecondary">#E0E0E0</color> <!-- define theme -->
 </resources>

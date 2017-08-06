@@ -2,9 +2,11 @@ package com.chicago311
 
 import android.app.Application
 import com.chicago311.di.AppComponent
+import com.chicago311.di.AppModule
 import com.chicago311.di.DaggerAppComponent
 import com.squareup.leakcanary.LeakCanary
 import timber.log.Timber
+
 
 class ChicagoApplication : Application() {
 
@@ -18,10 +20,11 @@ class ChicagoApplication : Application() {
             return
         }
         LeakCanary.install(this)
-        appComponent = DaggerAppComponent.builder().build()
-
+        appComponent = DaggerAppComponent.builder()
+                .appModule(AppModule(this))
+                .build()
         if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree());
+            Timber.plant(Timber.DebugTree())
         }
     }
 

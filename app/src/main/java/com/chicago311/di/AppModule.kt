@@ -2,25 +2,35 @@ package com.chicago311.di
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import android.arch.persistence.room.Room
+import android.content.Context
 import com.chicago311.BuildConfig
+import com.chicago311.ChicagoApplication
 import com.chicago311.ViewModelFactory
-import com.chicago311.api.ServiceRequestService
 import com.chicago311.create.ServiceListViewModel
+import com.chicago311.data.local.ServiceRequestDatabase
+import com.chicago311.data.local.ServicesDao
+import com.chicago311.data.remote.ServiceRequestService
 import com.chicago311.repository.ServiceRequestRepository
 import com.chicago311.repository.ServiceRequestRepositoryImpl
+import com.chicago311.util.LiveDataCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
-class AppModule {
+class AppModule(val app: ChicagoApplication) {
 
     private val BASE_URL = "http://test311request.cityofchicago.org/open311/v2/"
+
+    @Provides
+    fun getApplicationContext(): Context {
+        return app
+    }
 
     @Provides
     @Singleton
@@ -36,10 +46,22 @@ class AppModule {
         return Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(MoshiConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(LiveDataCallAdapterFactory())
                 .client(okHttpClient)
                 .build()
                 .create(ServiceRequestService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDb(context: Context): ServiceRequestDatabase {
+        return Room.databaseBuilder(context, ServiceRequestDatabase::class.java, "service_requests.db").build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideServicesDao(db: ServiceRequestDatabase): ServicesDao {
+        return db.servicesDao()
     }
 
     @Provides
