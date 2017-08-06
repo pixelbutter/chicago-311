@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">Chicago 311</string>
-    <string name="title_new_request">New request</string>
+    <string name="title_new_request">Create request</string>
     <string name="title_new_request_short">New</string>
     <string name="title_lookup_requests">Lookup requests</string>
     <string name="title_lookup_requests_short">Requests</string>
     <string name="title_help">Help</string>
 
+    <!-- General -->
     <string name="loading_with_ellipsis">Loading&#8230;</string>
+
+    <!-- Create Request -->
     <string name="error_message_request_list_failed">Couldn\'t load services :(</string>
 </resources>
