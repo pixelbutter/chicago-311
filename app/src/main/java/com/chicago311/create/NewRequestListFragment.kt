@@ -16,10 +16,8 @@ import com.chicago311.R
 import com.chicago311.data.Resource
 import com.chicago311.data.Status
 import com.chicago311.data.model.ServiceRequest
-import kotlinx.android.synthetic.main.fragment_create_request.*
+import kotlinx.android.synthetic.main.fragment_new_request_list.*
 import javax.inject.Inject
-
-
 
 class NewRequestListFragment : LifecycleFragment() {
 
@@ -27,10 +25,12 @@ class NewRequestListFragment : LifecycleFragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: ServiceListViewModel
-    private var listAdapter = ServicesViewAdapter(ArrayList<ServiceRequest>())
+    private var listAdapter = ServicesViewAdapter(ArrayList<ServiceRequest>()) {
+        startActivity(NewRequestActivity.createIntent(activity, it))
+    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_create_request, container, false)
+        return inflater!!.inflate(R.layout.fragment_new_request_list, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
