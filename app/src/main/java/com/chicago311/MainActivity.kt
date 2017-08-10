@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
                 scrollRange = appBarLayout.totalScrollRange
             }
             if (scrollRange + verticalOffset == 0) {
-                collapsingToolbar.setTitle(toolbar.title)
+                collapsingToolbar.title = toolbar.title
                 shown = true
             } else if (shown) {
                 collapsingToolbar.title = " "

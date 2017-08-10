@@ -5,7 +5,7 @@ import com.chicago311.AppExecutors
 import com.chicago311.data.Resource
 import com.chicago311.data.local.ServiceRequestDatabase
 import com.chicago311.data.local.ServicesDao
-import com.chicago311.data.model.ServiceDetailsResponse
+import com.chicago311.data.model.ServiceDefinitionResponse
 import com.chicago311.data.model.ServiceRequest
 import com.chicago311.data.remote.ApiResponse
 import com.chicago311.data.remote.ServiceRequestService
@@ -46,7 +46,8 @@ class ServiceRequestRepositoryImpl @Inject constructor(private val appExecutors:
         }.asLiveData()
     }
 
-    override fun getServiceDetails(serviceCode: String): LiveData<ServiceDetailsResponse> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getServiceDefinition(serviceCode: String): LiveData<ApiResponse<ServiceDefinitionResponse>> {
+        // TODO DAO?
+        return apiService.getServiceDetails(serviceCode, true)
     }
 }

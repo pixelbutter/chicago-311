@@ -1,7 +1,7 @@
 package com.chicago311.data.remote
 
 import android.arch.lifecycle.LiveData
-import com.chicago311.data.model.ServiceDetailsResponse
+import com.chicago311.data.model.ServiceDefinitionResponse
 import com.chicago311.data.model.ServiceRequest
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -15,5 +15,5 @@ interface ServiceRequestService {
 
     @GET("services/{service_code}.json")
     fun getServiceDetails(@Path("service_code") code: String,
-                          @Query("extensions") extensions: Boolean): LiveData<ApiResponse<List<ServiceDetailsResponse>>>
+                          @Query("extensions") extensions: Boolean): LiveData<ApiResponse<ServiceDefinitionResponse>>
 }

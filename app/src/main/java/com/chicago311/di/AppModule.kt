@@ -7,6 +7,7 @@ import android.content.Context
 import com.chicago311.BuildConfig
 import com.chicago311.ChicagoApplication
 import com.chicago311.ViewModelFactory
+import com.chicago311.create.NewRequestViewModel
 import com.chicago311.create.ServiceListViewModel
 import com.chicago311.data.local.ServiceRequestDatabase
 import com.chicago311.data.local.ServicesDao
@@ -72,6 +73,11 @@ class AppModule(val app: ChicagoApplication) {
 
     @Provides
     fun provideServiceListViewModel(viewModel: ServiceListViewModel): ViewModel {
+        return viewModel
+    }
+
+    @Provides
+    fun provideNewRequestViewModel(viewModel: NewRequestViewModel): ViewModel {
         return viewModel
     }
 

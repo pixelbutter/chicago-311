@@ -7,7 +7,6 @@ import com.chicago311.di.DaggerAppComponent
 import com.squareup.leakcanary.LeakCanary
 import timber.log.Timber
 
-
 class ChicagoApplication : Application() {
 
     private lateinit var appComponent: AppComponent
