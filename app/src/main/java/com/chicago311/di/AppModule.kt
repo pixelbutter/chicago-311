@@ -7,8 +7,6 @@ import android.content.Context
 import com.chicago311.BuildConfig
 import com.chicago311.ChicagoApplication
 import com.chicago311.ViewModelFactory
-import com.chicago311.create.NewRequestViewModel
-import com.chicago311.create.ServiceListViewModel
 import com.chicago311.data.local.ServiceRequestDatabase
 import com.chicago311.data.local.ServicesDao
 import com.chicago311.data.remote.ServiceRequestService
@@ -21,14 +19,16 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Provider
 import javax.inject.Singleton
 
-@Module
+@Module(includes = arrayOf(ViewModelModule::class))
 class AppModule(val app: ChicagoApplication) {
 
     private val BASE_URL = "http://test311request.cityofchicago.org/open311/v2/"
 
     @Provides
+    @Singleton
     fun getApplicationContext(): Context {
         return app
     }
@@ -72,17 +72,7 @@ class AppModule(val app: ChicagoApplication) {
     }
 
     @Provides
-    fun provideServiceListViewModel(viewModel: ServiceListViewModel): ViewModel {
-        return viewModel
-    }
-
-    @Provides
-    fun provideNewRequestViewModel(viewModel: NewRequestViewModel): ViewModel {
-        return viewModel
-    }
-
-    @Provides
-    fun provideViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory {
-        return factory
+    fun provideViewModelFactory(map: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>): ViewModelProvider.Factory {
+        return ViewModelFactory(map)
     }
 }

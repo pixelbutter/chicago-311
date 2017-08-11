@@ -2,20 +2,29 @@ package com.chicago311
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.chicago311.create.NewRequestViewModel
-import com.chicago311.create.ServiceListViewModel
 import javax.inject.Inject
+import javax.inject.Provider
 
-class ViewModelFactory @Inject constructor(private val serviceListViewModel: ServiceListViewModel,
-                                           private val newRequestViewModel: NewRequestViewModel) : ViewModelProvider.Factory {
+class ViewModelFactory @Inject
+constructor(private val creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>)
+    : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel?> create(modelClass: Class<T>?): T {
-        if (modelClass?.isAssignableFrom(ServiceListViewModel::class.java) == true) {
-            return serviceListViewModel as T
-        } else if (modelClass?.isAssignableFrom(NewRequestViewModel::class.java) == true) {
-            return newRequestViewModel as T
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        var creator: Provider<ViewModel>? = creators[modelClass]
+        if (creator == null) {
+            for ((key, value) in creators) {
+                if (modelClass.isAssignableFrom(key)) {
+                    creator = value
+                    break
+                }
+            }
         }
-        throw IllegalArgumentException("Unknown class name")
+        if (creator == null) throw IllegalArgumentException("unknown model class " + modelClass)
+        try {
+            return creator.get() as T
+        } catch (e: Exception) {
+            throw RuntimeException(e)
+        }
     }
 }
