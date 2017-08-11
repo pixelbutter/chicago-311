@@ -1,12 +1,10 @@
 package com.chicago311.create
 
-import android.arch.lifecycle.LifecycleActivity
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
+import android.arch.lifecycle.*
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.chicago311.ChicagoApplication
 import com.chicago311.EXTRA_SERVICE_REQUEST_ID
 import com.chicago311.R
@@ -15,7 +13,9 @@ import com.chicago311.data.remote.ApiResponse
 import kotlinx.android.synthetic.main.activity_new_request.*
 import javax.inject.Inject
 
-class NewRequestActivity : LifecycleActivity() {
+class NewRequestActivity : AppCompatActivity(), LifecycleRegistryOwner {
+
+    private val lifecycleRegistry = LifecycleRegistry(this)
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -41,6 +41,10 @@ class NewRequestActivity : LifecycleActivity() {
                         content.text = it?.errorMessage ?: "unknown error :("
                     }
                 })
+    }
+
+    override fun getLifecycle(): LifecycleRegistry {
+        return lifecycleRegistry
     }
 
     companion object {
