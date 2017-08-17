@@ -8,6 +8,9 @@
 
     <!-- General -->
     <string name="loading_with_ellipsis">Loading&#8230;</string>
+    <string name="change">Change</string>
+    <string name="current_location">Current Location</string>
+    <string name="photos">Photos</string>
 
     <!-- Create Request -->
     <string name="error_message_request_list_failed">Couldn\'t load services :(</string>

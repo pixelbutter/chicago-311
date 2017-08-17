@@ -35,12 +35,12 @@ class NewRequestActivity : AppCompatActivity(), LifecycleRegistryOwner {
                 .observe(this, Observer<ApiResponse<ServiceRequirementResponse>> {
                     if (it != null && it.isSuccessful() && it.body != null) {
                         val requirementResponse: ServiceRequirementResponse = it.body
-                        content.text = "\n\n"
+                        attributesContent.text = ""
                         requirementResponse.attributes.forEach { attribute ->
-                            content.append("${attribute.description} \n\n")
+                            attributesContent.append("${attribute.description} \n\n")
                         }
                     } else {
-                        content.text = it?.errorMessage ?: "unknown error :("
+                        attributesContent.text = it?.errorMessage ?: "unknown error :("
                     }
                 })
 
