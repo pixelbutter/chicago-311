@@ -15,6 +15,4 @@ data class ServiceRequest(
         val name: String,
         val description: String,
         val group: String?
-//        @ColumnInfo(name = "last_updated")
-//        var lastUpdated: Date?
 )

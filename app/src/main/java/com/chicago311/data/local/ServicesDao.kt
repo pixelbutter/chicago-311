@@ -15,6 +15,9 @@ interface ServicesDao {
     @Query("SELECT * FROM services")
     fun getAllServices(): LiveData<List<ServiceRequest>>
 
+    @Query("SELECT * FROM services WHERE service_code = :serviceCode")
+    fun getServiceSummary(serviceCode: String): LiveData<ServiceRequest>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertServices(services: List<ServiceRequest>)
 

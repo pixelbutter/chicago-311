@@ -5,8 +5,8 @@ import com.chicago311.AppExecutors
 import com.chicago311.data.Resource
 import com.chicago311.data.local.ServiceRequestDatabase
 import com.chicago311.data.local.ServicesDao
-import com.chicago311.data.model.ServiceDefinitionResponse
 import com.chicago311.data.model.ServiceRequest
+import com.chicago311.data.model.ServiceRequirementResponse
 import com.chicago311.data.remote.ApiResponse
 import com.chicago311.data.remote.ServiceRequestService
 import timber.log.Timber
@@ -46,7 +46,11 @@ class ServiceRequestRepositoryImpl @Inject constructor(private val appExecutors:
         }.asLiveData()
     }
 
-    override fun getServiceDefinition(serviceCode: String): LiveData<ApiResponse<ServiceDefinitionResponse>> {
+    override fun getServiceSummary(serviceCode: String): LiveData<ServiceRequest> {
+        return dao.getServiceSummary(serviceCode)
+    }
+
+    override fun getServiceRequirements(serviceCode: String): LiveData<ApiResponse<ServiceRequirementResponse>> {
         // TODO DAO?
         return apiService.getServiceDetails(serviceCode, true)
     }

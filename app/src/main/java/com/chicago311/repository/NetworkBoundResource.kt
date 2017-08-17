@@ -59,7 +59,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
             result.removeSource(apiResponse)
             result.removeSource(dbSource)
             // noinspection ConstantConditions
-            if (response != null && response.isSucessful()) {
+            if (response != null && response.isSuccessful()) {
                 appExecutors.diskIO().execute {
                     saveCallResult(processResponse(response))
                     appExecutors.mainThread().execute {

@@ -6,9 +6,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.chicago311.ChicagoApplication
-import com.chicago311.EXTRA_SERVICE_REQUEST_ID
+import com.chicago311.EXTRA_SERVICE_CODE
 import com.chicago311.R
-import com.chicago311.data.model.ServiceDefinitionResponse
+import com.chicago311.data.model.ServiceRequirementResponse
 import com.chicago311.data.remote.ApiResponse
 import kotlinx.android.synthetic.main.activity_new_request.*
 import javax.inject.Inject
@@ -24,21 +24,31 @@ class NewRequestActivity : AppCompatActivity(), LifecycleRegistryOwner {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (this.application as ChicagoApplication).getAppComponent().inject(this)
         setContentView(R.layout.activity_new_request)
 
-        val serviceRequestId = intent.getStringExtra(EXTRA_SERVICE_REQUEST_ID)
-        (this.application as ChicagoApplication).getAppComponent().inject(this)
+        val serviceCode = savedInstanceState?.getString(EXTRA_SERVICE_CODE) ?:
+                intent.getStringExtra(EXTRA_SERVICE_CODE)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(NewRequestViewModel::class.java)
-        viewModel.getServiceDefinition(serviceRequestId)
-                .observe(this, Observer<ApiResponse<ServiceDefinitionResponse>> {
-                    if (it != null && it.isSucessful() && it.body != null) {
-                        val definitionResponse: ServiceDefinitionResponse = it.body
-                        content.text = "Response:\n\n"
-                        definitionResponse.attributes.forEach { attribute ->
+        viewModel.setId(serviceCode)
+        viewModel.getServiceDefinition()
+                .observe(this, Observer<ApiResponse<ServiceRequirementResponse>> {
+                    if (it != null && it.isSuccessful() && it.body != null) {
+                        val requirementResponse: ServiceRequirementResponse = it.body
+                        content.text = "\n\n"
+                        requirementResponse.attributes.forEach { attribute ->
                             content.append("${attribute.description} \n\n")
                         }
                     } else {
                         content.text = it?.errorMessage ?: "unknown error :("
+                    }
+                })
+
+        viewModel.getServiceSummary()
+                .observe(this, Observer {
+                    if (it != null) {
+                        title = it.name
+                        description.text = it.description
                     }
                 })
     }
@@ -50,7 +60,7 @@ class NewRequestActivity : AppCompatActivity(), LifecycleRegistryOwner {
     companion object {
         fun createIntent(context: Context, code: String): Intent {
             val intent = Intent(context, NewRequestActivity::class.java)
-            intent.putExtra(EXTRA_SERVICE_REQUEST_ID, code)
+            intent.putExtra(EXTRA_SERVICE_CODE, code)
             return intent
         }
     }

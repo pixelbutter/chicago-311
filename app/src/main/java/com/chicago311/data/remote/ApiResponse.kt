@@ -39,5 +39,5 @@ class ApiResponse<T> {
         }
     }
 
-    fun isSucessful() = code in 200..299
+    fun isSuccessful() = code in 200..299
 }
