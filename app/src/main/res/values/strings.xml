@@ -10,8 +10,20 @@
     <string name="loading_with_ellipsis">Loading&#8230;</string>
     <string name="change">Change</string>
     <string name="current_location">Current Location</string>
+    <string name="location">Location</string>
     <string name="photos">Photos</string>
+    <string name="details">Details</string>
 
     <!-- Create Request -->
     <string name="error_message_request_list_failed">Couldn\'t load services :(</string>
+    <string name="title_reporter">Reporter (Optional)</string>
+    <string name="title_request_details">Request Details</string>
+    <string name="first_name">First name</string>
+    <string name="first_name_hint">Jane</string>
+    <string name="last_name">Last name</string>
+    <string name="last_name_hint">Doe</string>
+    <string name="email">Email</string>
+    <string name="email_hint">jane.doe@example.com</string>
+    <string name="phone">Phone number</string>
+    <string name="phone_hint">(312) 555-5555</string>
 </resources>

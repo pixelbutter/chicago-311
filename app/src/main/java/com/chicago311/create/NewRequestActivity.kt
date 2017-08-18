@@ -30,8 +30,8 @@ class NewRequestActivity : AppCompatActivity(), LifecycleRegistryOwner {
         val serviceCode = savedInstanceState?.getString(EXTRA_SERVICE_CODE) ?:
                 intent.getStringExtra(EXTRA_SERVICE_CODE)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(NewRequestViewModel::class.java)
-        viewModel.setId(serviceCode)
-        viewModel.getServiceDefinition()
+        viewModel.updateCode(serviceCode)
+        viewModel.getRequirements()
                 .observe(this, Observer<ApiResponse<ServiceRequirementResponse>> {
                     if (it != null && it.isSuccessful() && it.body != null) {
                         val requirementResponse: ServiceRequirementResponse = it.body

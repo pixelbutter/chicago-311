@@ -13,7 +13,8 @@ class NewRequestViewModel
 
     private var serviceCode: String = ""
 
-    fun getServiceDefinition(): LiveData<ApiResponse<ServiceRequirementResponse>> {
+    fun getRequirements(): LiveData<ApiResponse<ServiceRequirementResponse>> {
+        // TODO don't do this
         return repository.getServiceRequirements(serviceCode)
     }
 
@@ -21,12 +22,10 @@ class NewRequestViewModel
         return repository.getServiceSummary(serviceCode)
     }
 
-    fun setId(serviceId: String) {
-        if (this.serviceCode == serviceId) {
+    fun updateCode(serviceCode: String) {
+        if (this.serviceCode == serviceCode) {
             return
         }
-        this.serviceCode = serviceId
+        this.serviceCode = serviceCode
     }
-
-
 }
