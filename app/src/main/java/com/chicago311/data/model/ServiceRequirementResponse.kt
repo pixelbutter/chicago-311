@@ -4,7 +4,6 @@ import com.squareup.moshi.Json
 
 data class ServiceRequirementResponse(
         @Json(name = "service_code")
-        val code: String,
+        val code: String? = null,
         @Json(name = "attributes")
-        val attributes:List<ServiceRequestAttribute>
-)
+        val attributes:List<ServiceRequestAttribute>? = null)

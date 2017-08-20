@@ -13,7 +13,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.chicago311.ChicagoApplication
 import com.chicago311.R
-import com.chicago311.data.Resource
 import com.chicago311.data.Status
 import com.chicago311.data.model.ServiceRequest
 import kotlinx.android.synthetic.main.fragment_new_request_list.*
@@ -21,16 +20,14 @@ import javax.inject.Inject
 
 class NewRequestListFragment : LifecycleFragment() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: ServiceListViewModel
     private var listAdapter = ServicesViewAdapter(ArrayList<ServiceRequest>()) {
         startActivity(NewRequestActivity.createIntent(activity, it))
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_new_request_list, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_new_request_list, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -42,13 +39,13 @@ class NewRequestListFragment : LifecycleFragment() {
         setupViews()
 
         // Handle changes emitted by LiveData
-        viewModel.getServices().observe(this, Observer<Resource<List<ServiceRequest>>> {
+        viewModel.getServices().observe(this, Observer {
             // TODO - enhance error scenarios - spinner, retry, etc
             when (it?.status) {
                 Status.LOADING -> {
                     availableServicesText.visibility = View.VISIBLE
                     servicesRecyclerView.visibility = View.GONE
-                    availableServicesText.text = getString(R.string.loading_with_ellipsis) // TODO spinner
+                    availableServicesText.text = getString(R.string.loading_with_ellipsis)
                 }
                 Status.ERROR -> {
                     availableServicesText.visibility = View.VISIBLE

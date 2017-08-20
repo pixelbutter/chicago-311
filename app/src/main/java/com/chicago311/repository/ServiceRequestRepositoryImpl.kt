@@ -12,10 +12,11 @@ import com.chicago311.data.remote.ServiceRequestService
 import timber.log.Timber
 import javax.inject.Inject
 
-class ServiceRequestRepositoryImpl @Inject constructor(private val appExecutors: AppExecutors,
-                                                       private val apiService: ServiceRequestService,
-                                                       private val db: ServiceRequestDatabase,
-                                                       private val dao: ServicesDao) : ServiceRequestRepository {
+class ServiceRequestRepositoryImpl @Inject constructor(
+        private val appExecutors: AppExecutors,
+        private val apiService: ServiceRequestService,
+        private val db: ServiceRequestDatabase,
+        private val dao: ServicesDao) : ServiceRequestRepository {
 
     override fun getAvailableServices(): LiveData<Resource<List<ServiceRequest>>> {
         return object : NetworkBoundResource<List<ServiceRequest>, List<ServiceRequest>>(appExecutors) {

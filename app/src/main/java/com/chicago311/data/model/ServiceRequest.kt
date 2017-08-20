@@ -12,7 +12,6 @@ data class ServiceRequest(
         val code: String,
         @ColumnInfo(name = "service_name")
         @Json(name = "service_name")
-        val name: String,
-        val description: String,
-        val group: String?
-)
+        val name: String? = null,
+        val description: String? = null,
+        val group: String? = null)

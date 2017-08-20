@@ -8,8 +8,8 @@ import com.chicago311.data.remote.ApiResponse
 import com.chicago311.repository.ServiceRequestRepository
 import javax.inject.Inject
 
-class NewRequestViewModel
-@Inject constructor(val repository: ServiceRequestRepository) : ViewModel() {
+class NewRequestViewModel @Inject constructor(
+        val repository: ServiceRequestRepository) : ViewModel() {
 
     private var serviceCode: String = ""
 
