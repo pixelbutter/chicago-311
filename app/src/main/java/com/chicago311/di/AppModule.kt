@@ -25,7 +25,7 @@ import javax.inject.Singleton
 @Module(includes = arrayOf(ViewModelModule::class))
 class AppModule(val app: ChicagoApplication) {
 
-    private val BASE_URL = "http://311api.cityofchicago.org/open311/v2/"
+    private val BASE_URL = "http://test311api.cityofchicago.org/open311/v2/"
 
     @Provides
     @Singleton
