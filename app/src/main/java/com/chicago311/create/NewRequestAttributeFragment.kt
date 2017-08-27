@@ -19,7 +19,7 @@ import timber.log.Timber
 class NewRequestAttributeFragment : Fragment(), LifecycleRegistryOwner {
 
     private lateinit var viewModel: NewRequestViewModel
-    private val lifecyleRegistry = LifecycleRegistry(this)
+    private val lifecycleRegistry = LifecycleRegistry(this)
     private val attributeAdapter = AttributeAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -41,9 +41,7 @@ class NewRequestAttributeFragment : Fragment(), LifecycleRegistryOwner {
                 .observe(this, Observer<ApiResponse<ServiceRequirementResponse>> {
                     if (it != null && it.isSuccessful() && it.body != null) {
                         val requirementResponse: ServiceRequirementResponse = it.body
-                        if (requirementResponse.attributes != null) {
-                            attributeAdapter.updateItems(requirementResponse.attributes)
-                        }
+                        requirementResponse.attributes?.let { attributeAdapter.updateItems(it) }
                     } else {
                         Timber.w("Unknown error :(")
                     }
@@ -51,7 +49,7 @@ class NewRequestAttributeFragment : Fragment(), LifecycleRegistryOwner {
     }
 
     override fun getLifecycle(): LifecycleRegistry {
-        return lifecyleRegistry
+        return lifecycleRegistry
     }
 
     companion object {

@@ -8,12 +8,12 @@ import timber.log.Timber
 internal class AttributeAdapter : RecyclerView.Adapter<AttributeAdapter.AttributeViewHolder>(),
         AttributeItemView.InputChangeListener {
 
-    private val VIEW_TYPE_TEXT = 0;
-    private val VIEW_TYPE_SPINNER = 1;
-    private val VIEW_TYPE_NUMBER = 2;
-    private val VIEW_TYPE_DATETIME = 3;
-    private val VIEW_TYPE_CHECKBOXES = 4;
-    private val VIEW_TYPE_SIMPLE_MESSAGE = 5;
+    private val VIEW_TYPE_TEXT = 0
+    private val VIEW_TYPE_SPINNER = 1
+    private val VIEW_TYPE_NUMBER = 2
+    private val VIEW_TYPE_DATETIME = 3
+    private val VIEW_TYPE_CHECKBOXES = 4
+    private val VIEW_TYPE_SIMPLE_MESSAGE = 5
 
     private val attributes: MutableList<ServiceRequestAttribute> = mutableListOf()
     private val attributeInputMap: MutableMap<String, List<String>> = mutableMapOf()
@@ -42,13 +42,13 @@ internal class AttributeAdapter : RecyclerView.Adapter<AttributeAdapter.Attribut
     }
 
     override fun onBindViewHolder(holder: AttributeViewHolder, position: Int) {
-        holder.bindAttribute(attributes.get(position))
+        holder.bindAttribute(attributes[position])
     }
 
     override fun getItemViewType(position: Int): Int {
-        var itemType = -1;
+        var itemType = -1
         // todo change/move string literals outside of adapter
-        val attribute = attributes.get(position)
+        val attribute = attributes[position]
         if (attribute.requiresInput == false) {
             itemType = VIEW_TYPE_SIMPLE_MESSAGE
         } else {
@@ -65,8 +65,8 @@ internal class AttributeAdapter : RecyclerView.Adapter<AttributeAdapter.Attribut
     }
 
     override fun onInputChanged(code: String, value: List<String>) {
-        Timber.d("jk** input changed: ${code} -> ${value.get(0)}")
-        attributeInputMap.put(code, value)
+        Timber.d("Input changed: $code -> ${value[0]}")
+        attributeInputMap[code] = value
     }
 
     fun updateItems(newAttributes: List<ServiceRequestAttribute>) {

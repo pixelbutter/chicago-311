@@ -14,7 +14,6 @@ import android.view.ViewGroup
 import com.chicago311.ChicagoApplication
 import com.chicago311.R
 import com.chicago311.data.Status
-import com.chicago311.data.model.ServiceRequest
 import kotlinx.android.synthetic.main.fragment_new_request_list.*
 import javax.inject.Inject
 
@@ -22,7 +21,7 @@ class NewRequestListFragment : LifecycleFragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: ServiceListViewModel
-    private var listAdapter = ServicesViewAdapter(ArrayList<ServiceRequest>()) {
+    private var listAdapter = ServicesViewAdapter(ArrayList()) {
         startActivity(NewRequestActivity.createIntent(activity, it))
     }
 

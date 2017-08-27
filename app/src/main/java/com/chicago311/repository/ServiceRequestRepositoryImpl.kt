@@ -33,7 +33,7 @@ class ServiceRequestRepositoryImpl @Inject constructor(
 
             override fun shouldFetch(data: List<ServiceRequest>?): Boolean {
                 val shouldLoad = data == null || data.isEmpty()
-                Timber.d("Should load: ${shouldLoad}")
+                Timber.d("Should load: $shouldLoad")
                 return shouldLoad
             }
 

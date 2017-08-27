@@ -16,7 +16,7 @@
         tools:text="Spinner?"/>
 
     <Spinner
-        android:id="@id/attributeInputField"
+        android:id="@+id/attributeSpinner"
         style="@style/Widget.AppCompat.Spinner.Underlined"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

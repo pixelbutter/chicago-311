@@ -31,7 +31,7 @@ class NewRequestActivity : AppCompatActivity(), LifecycleRegistryOwner {
 
         viewModel.serviceSummary
                 .observe(this, Observer {
-                    if (it != null) {
+                    it?.let {
                         title = it.name
                         description.text = it.description
                     }
