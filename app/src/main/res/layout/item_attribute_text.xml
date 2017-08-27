@@ -13,11 +13,12 @@
         android:layout_marginBottom="4dp"
         android:labelFor="@+id/attributeInputField"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-        android:text="Spinner?"/>
+        tools:text="Plain text?"/>
 
-    <Spinner
+    <EditText
         android:id="@id/attributeInputField"
-        style="@style/Widget.AppCompat.Spinner.Underlined"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        tools:text="ABC123"/>
 </LinearLayout>

@@ -32,11 +32,13 @@ class ServiceRequestRepositoryImpl @Inject constructor(
             }
 
             override fun shouldFetch(data: List<ServiceRequest>?): Boolean {
-                Timber.d("Service list loaded from db: {$data}")
-                return data == null || data.isEmpty()
+                val shouldLoad = data == null || data.isEmpty()
+                Timber.d("Should load: ${shouldLoad}")
+                return shouldLoad
             }
 
             override fun loadFromDb(): LiveData<List<ServiceRequest>> {
+                Timber.d("Loading data from db")
                 return dao.getAllServices()
             }
 

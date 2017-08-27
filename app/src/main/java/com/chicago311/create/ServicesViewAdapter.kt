@@ -8,7 +8,7 @@ import com.chicago311.R
 import com.chicago311.data.model.ServiceRequest
 import kotlinx.android.synthetic.main.item_service_request.view.*
 
-class ServicesViewAdapter(
+internal class ServicesViewAdapter(
         var services: ArrayList<ServiceRequest>,
         val itemClick: (String) -> Unit) :
         RecyclerView.Adapter<ServicesViewAdapter.ViewHolder>() {

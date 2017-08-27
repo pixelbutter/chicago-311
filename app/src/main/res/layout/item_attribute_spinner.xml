@@ -7,18 +7,17 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/attributePrompt"
+        android:id="@+id/attributeSpinnerPrompt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:labelFor="@+id/attributeInputField"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-        android:text="Plain text?"/>
+        tools:text="Spinner?"/>
 
-    <EditText
+    <Spinner
         android:id="@id/attributeInputField"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        tools:text="ABC123"/>
+        android:layout_height="wrap_content"/>
 </LinearLayout>
