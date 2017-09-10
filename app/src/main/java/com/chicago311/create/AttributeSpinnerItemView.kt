@@ -23,14 +23,23 @@ internal class AttributeSpinnerItemView : AttributeItemView {
             attributeSpinnerPrompt.text = context.getString(R.string.optional_input_field, attribute.description)
         }
 
-        val options: List<String> = attribute.options?.map { option -> option.label } ?: emptyList()
+        val options = mutableListOf<String>(context.getString(R.string.form_spinner_hint))
+        if (attribute.options != null) {
+            options.addAll(attribute.options.map { it.label })
+        }
+
         val optionsAdapter = ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, options)
         optionsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         attributeSpinner.adapter = optionsAdapter
         attributeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parentView: AdapterView<*>, selectedItem: View, position: Int, id: Long) {
-                val selectedOption = attribute.options!![position]
-                inputChangeListener?.onInputChanged(attribute.code!!, listOf(selectedOption.key))
+                if (position > 0) {
+                    val selectedOption = attribute.options!![position - 1]
+                    inputChangeListener?.onInputChanged(attribute.code, listOf(selectedOption.key))
+                } else {
+                    // todo
+                    inputChangeListener?.onInputChanged(attribute.code, null)
+                }
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {

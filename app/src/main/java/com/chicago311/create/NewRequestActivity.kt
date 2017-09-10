@@ -32,7 +32,7 @@ class NewRequestActivity : AppCompatActivity(), LifecycleRegistryOwner {
         viewModel.serviceSummary
                 .observe(this, Observer {
                     it?.let {
-                        title = it.name
+                        supportActionBar?.subtitle = it.name
                         description.text = it.description
                     }
                 })

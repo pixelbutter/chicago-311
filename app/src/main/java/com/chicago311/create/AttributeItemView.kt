@@ -12,7 +12,7 @@ import com.chicago311.data.model.ServiceRequestAttribute
 internal abstract class AttributeItemView : FrameLayout {
 
     internal interface InputChangeListener {
-        fun onInputChanged(code: String, value: List<String>)
+        fun onInputChanged(code: String?, value: List<String>?)
     }
 
     internal var attribute: ServiceRequestAttribute? = null

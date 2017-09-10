@@ -26,6 +26,7 @@
 
         <activity
             android:name=".create.NewRequestActivity"
+            android:label="@string/title_new_request"
             android:parentActivityName=".MainActivity"/>
     </application>
 

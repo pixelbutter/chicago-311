@@ -64,9 +64,13 @@ internal class AttributeAdapter : RecyclerView.Adapter<AttributeAdapter.Attribut
         return itemType
     }
 
-    override fun onInputChanged(code: String, value: List<String>) {
-        Timber.d("Input changed: $code -> ${value[0]}")
-        attributeInputMap[code] = value
+    override fun onInputChanged(code: String?, value: List<String>?) {
+        if (code != null && value != null && value.isNotEmpty()) {
+            Timber.d("Input changed: $code -> ${value[0]}")
+            attributeInputMap[code] = value
+        } else {
+            Timber.d("Input changed to default value")
+        }
     }
 
     fun updateItems(newAttributes: List<ServiceRequestAttribute>) {

@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             val toolbarTitle: String
             when (item.itemId) {
                 R.id.navigation_new_request -> {
-                    toolbarTitle = getString(R.string.title_new_request)
+                    toolbarTitle = getString(R.string.title_create_request)
                     newFragment = NewRequestListFragment.newInstance()
                     selected = true
                     showExpandedToolbar = true
@@ -59,8 +59,8 @@ class MainActivity : AppCompatActivity() {
         })
 
         val transaction = supportFragmentManager.beginTransaction()
-        mainToolbar.title = getString(R.string.title_new_request)
-        collapsingToolbar.title = getString(R.string.title_new_request)
+        mainToolbar.title = getString(R.string.title_create_request)
+        collapsingToolbar.title = getString(R.string.title_create_request)
         transaction.replace(R.id.fragmentContainer, NewRequestListFragment.newInstance())
         transaction.commit()
     }

@@ -1,9 +1,10 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Chicago 311</string>
-    <string name="title_new_request">Create request</string>
-    <string name="title_new_request_short">New</string>
+    <string name="title_create_request">Create request</string>
+    <string name="title_create_request_short">New</string>
     <string name="title_lookup_requests">Lookup requests</string>
     <string name="title_lookup_requests_short">Requests</string>
+    <string name="title_new_request">New request</string>
     <string name="title_help">Help</string>
 
     <!-- General -->
@@ -27,4 +28,5 @@
     <string name="phone">Phone number</string>
     <string name="phone_hint">(312) 555-5555</string>
     <string name="optional_input_field"><xliff:g example="Vehicle License Plate Number" id="field">%s</xliff:g> (Optional)</string>
+    <string name="form_spinner_hint">Select an item</string>
 </resources>
