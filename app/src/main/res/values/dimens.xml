@@ -5,4 +5,5 @@
 
     <dimen name="fontsize_body2">14sp</dimen>
     <dimen name="fontsize_footnote">13sp</dimen>
+    <dimen name="fontsize_caption">12sp</dimen>
 </resources>

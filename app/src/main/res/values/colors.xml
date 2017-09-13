@@ -2,6 +2,6 @@
 <resources>
     <color name="colorPrimary">#2D3142</color>
     <color name="colorPrimaryDark">#1F212D</color>
-    <color name="colorAccent">#FC5928</color>
-    <color name="colorBackgroundSecondary">#E0E0E0</color> <!-- define theme -->
+    <color name="colorAccent">@color/mayaBlue</color>
+    <color name="colorBackgroundSecondary">@color/platinum</color>
 </resources>

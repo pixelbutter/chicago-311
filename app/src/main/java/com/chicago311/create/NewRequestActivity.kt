@@ -5,13 +5,17 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
+import android.widget.Toast
 import com.chicago311.ChicagoApplication
 import com.chicago311.EXTRA_SERVICE_CODE
 import com.chicago311.R
+import com.stepstone.stepper.StepperLayout
+import com.stepstone.stepper.VerificationError
 import kotlinx.android.synthetic.main.activity_new_request.*
 import javax.inject.Inject
 
-class NewRequestActivity : AppCompatActivity(), LifecycleRegistryOwner {
+class NewRequestActivity : AppCompatActivity(), LifecycleRegistryOwner, StepperLayout.StepperListener {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     private val lifecycleRegistry = LifecycleRegistry(this)
@@ -22,18 +26,16 @@ class NewRequestActivity : AppCompatActivity(), LifecycleRegistryOwner {
         (this.application as ChicagoApplication).getAppComponent().inject(this)
         setContentView(R.layout.activity_new_request)
 
+        stepperLayout.setAdapter(NewRequestStepperAdapter(supportFragmentManager, this), 0)
+        stepperLayout.setListener(this)
+
         val serviceCode = savedInstanceState?.getString(EXTRA_SERVICE_CODE) ?: intent.getStringExtra(EXTRA_SERVICE_CODE)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(NewRequestViewModel::class.java)
-
-        val ft = supportFragmentManager.beginTransaction()
-        ft.add(R.id.attributeFragment, NewRequestAttributeFragment.createFragment())
-        ft.commit()
 
         viewModel.serviceSummary
                 .observe(this, Observer {
                     it?.let {
                         supportActionBar?.subtitle = it.name
-                        description.text = it.description
                     }
                 })
 
@@ -42,6 +44,31 @@ class NewRequestActivity : AppCompatActivity(), LifecycleRegistryOwner {
 
     override fun getLifecycle(): LifecycleRegistry {
         return lifecycleRegistry
+    }
+
+    override fun onStepSelected(newStepPosition: Int) {
+        Toast.makeText(this, "Step selected: $newStepPosition", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onError(verificationError: VerificationError?) {
+        Toast.makeText(this, "Step error! ${verificationError.toString()}", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onReturn() {
+        Toast.makeText(this, "Step returned", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onCompleted(completeButton: View?) {
+        Toast.makeText(this, "Step completed", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onBackPressed() {
+        val currentStepPosition = stepperLayout.currentStepPosition
+        if (currentStepPosition > 0) {
+            stepperLayout.onBackClicked()
+        } else {
+            super.onBackPressed()
+        }
     }
 
     companion object {

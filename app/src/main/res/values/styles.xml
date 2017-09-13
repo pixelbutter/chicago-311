@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="ms_stepperStyle">@style/StepperTheme</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -23,5 +24,34 @@
         <item name="android:letterSpacing" tools:targetApi="lollipop">0.25</item>
         <item name="android:textSize">@dimen/fontsize_footnote</item>
         <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="StepperTheme">
+        <item name="ms_stepperType">tabs</item>
+        <item name="ms_stepperLayoutTheme">@style/StepperTheme.DarkTab</item>
+        <item name="ms_activeStepColor">@color/mayaBlue</item>
+        <item name="ms_inactiveStepColor">@color/mayaBlue_54</item>
+        <item name="ms_nextButtonColor">?attr/colorPrimary</item>
+        <item name="ms_backButtonColor">?attr/colorPrimary</item>
+        <item name="ms_tabStepDividerWidth">56dp</item>
+        <item name="ms_bottomNavigationBackground">@color/colorBackgroundSecondary</item>
+    </style>
+
+    <style name="StepperTheme.DarkTab" parent="MSDefaultStepperLayoutTheme">
+        <item name="ms_tabsContainerStyle">@style/StepperTabs.Container.Dark</item>
+        <item name="ms_stepTabTitleStyle">@style/StepperTabs.Title.Dark</item>
+        <item name="ms_stepTabSubtitleStyle">@style/StepperTabs.Subtitle.Dark</item>
+    </style>
+
+    <style name="StepperTabs.Container.Dark" parent="MSStepTabsContainer">
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <style name="StepperTabs.Title.Dark" parent="MSStepTabTitle">
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
+    </style>
+
+    <style name="StepperTabs.Subtitle.Dark" parent="MSStepTabSubtitle">
+        <item name="android:textColor">?android:attr/textColorTertiaryInverse</item>
     </style>
 </resources>

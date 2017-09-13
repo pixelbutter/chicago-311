@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="16dp"
+    android:layout_marginLeft="24dp"
+    android:layout_marginRight="24dp"
     android:layout_marginBottom="8dp"
     android:orientation="vertical">
 
@@ -13,6 +16,7 @@
         android:layout_marginBottom="4dp"
         android:labelFor="@+id/attributeInputField"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textSize="@dimen/fontsize_body2"
         tools:text="Plain text?"/>
 
     <EditText

@@ -14,11 +14,15 @@
     <string name="location">Location</string>
     <string name="photos">Photos</string>
     <string name="details">Details</string>
+    <string name="optional">Optional</string>
 
     <!-- Create Request -->
     <string name="error_message_request_list_failed">Couldn\'t load services :(</string>
     <string name="title_reporter">Reporter (Optional)</string>
     <string name="title_request_details">Request Details</string>
+    <string name="tab_title_details">Details</string>
+    <string name="tab_title_location">Location</string>
+    <string name="tab_title_contact">Contact</string>
     <string name="first_name">First name</string>
     <string name="first_name_hint">Jane</string>
     <string name="last_name">Last name</string>

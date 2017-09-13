@@ -75,4 +75,7 @@ dependencies {
     testCompile "android.arch.persistence.room:testing:$archComponentsVersion"
     compile "android.arch.persistence.room:rxjava2:$archComponentsVersion"
     implementation 'com.google.android.gms:play-services-maps:11.2.0'
+
+    // UI Libraries
+    compile 'com.stepstone.stepper:material-stepper:4.1.0'
 }

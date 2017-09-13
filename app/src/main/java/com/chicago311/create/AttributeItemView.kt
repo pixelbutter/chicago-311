@@ -43,7 +43,7 @@ internal abstract class AttributeItemView : FrameLayout {
     }
 
     private fun init() {
-        val inflater = LayoutInflater.from(context)
-        inflater.inflate(getLayoutId(), this)
+        setLayoutParams(FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT))
+        LayoutInflater.from(context).inflate(getLayoutId(), this)
     }
 }
