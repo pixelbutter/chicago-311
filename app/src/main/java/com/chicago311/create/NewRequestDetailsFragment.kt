@@ -5,7 +5,7 @@ import android.arch.lifecycle.LifecycleRegistryOwner
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,18 +19,9 @@ class NewRequestDetailsFragment : BaseStepperFragment(), LifecycleRegistryOwner 
 
     private lateinit var viewModel: NewRequestViewModel
     private val lifecycleRegistry = LifecycleRegistry(this)
-    private val attributeAdapter = AttributeAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.fragment_new_request_details, container, false)
-    }
-
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        newRequestAttributes.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = attributeAdapter
-        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -40,9 +31,16 @@ class NewRequestDetailsFragment : BaseStepperFragment(), LifecycleRegistryOwner 
                 .observe(this, Observer<ApiResponse<ServiceRequirementResponse>> {
                     if (it != null && it.isSuccessful() && it.body != null) {
                         val requirementResponse: ServiceRequirementResponse = it.body
-                        requirementResponse.attributes?.let { attributeAdapter.updateItems(it) }
+                        requirementResponse.attributes?.let {
+                            val adapter = AttributeArrayAdapter(context, it)
+                            for (i in 0 until adapter.count) {
+                                attributeContainer.addView(adapter.getView(i, null, null))
+                            }
+                            requiredFieldDescription.text = Html.fromHtml(getString(R.string.form_required_field_footnote))
+                        }
                     } else {
                         Timber.w("Unknown error :(")
+                        // TODO: handle unhappy
                     }
                 })
 

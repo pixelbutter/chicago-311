@@ -2,13 +2,14 @@ package com.chicago311.create
 
 import android.content.Context
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.util.AttributeSet
 import com.chicago311.R
 import com.chicago311.data.model.ServiceRequestAttribute
+import com.chicago311.data.model.ServiceRequestAttribute.InputViewType
+import com.chicago311.util.setTextWithAsterisk
 import kotlinx.android.synthetic.main.item_attribute_text.view.*
-
-
 
 internal class AttributeTextItemView : AttributeItemView {
 
@@ -18,11 +19,16 @@ internal class AttributeTextItemView : AttributeItemView {
 
     override fun update(attribute: ServiceRequestAttribute) {
         super.update(attribute)
-        if (attribute.required == true) {
-            attributePrompt.text = attribute.description
-        } else {
-            attributePrompt.text = context.getString(R.string.optional_input_field, attribute.description)
+        setupInputType(attribute)
+
+        attribute.description?.let {
+            if (attribute.required == true) {
+                attributePrompt.setTextWithAsterisk(it)
+            } else {
+                attributePrompt.text = it
+            }
         }
+
         attributeInputField.hint = attribute.hint
         // todo rxbinding
         attributeInputField.addTextChangedListener(object : TextWatcher {
@@ -42,5 +48,14 @@ internal class AttributeTextItemView : AttributeItemView {
 
     override fun getLayoutId(): Int {
         return R.layout.item_attribute_text
+    }
+
+    private fun setupInputType(attribute: ServiceRequestAttribute) {
+        when (attribute.getInputViewType()) {
+            InputViewType.PHONE_NUMBER -> attributeInputField.inputType = InputType.TYPE_CLASS_PHONE
+            InputViewType.NUMBER -> attributeInputField.inputType = InputType.TYPE_CLASS_NUMBER
+            InputViewType.DATETIME -> attributeInputField.inputType = InputType.TYPE_CLASS_DATETIME
+            else -> attributeInputField.inputType = InputType.TYPE_CLASS_TEXT
+        }
     }
 }

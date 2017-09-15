@@ -31,6 +31,6 @@
     <string name="email_hint">jane.doe@example.com</string>
     <string name="phone">Phone number</string>
     <string name="phone_hint">(312) 555-5555</string>
-    <string name="optional_input_field"><xliff:g example="Vehicle License Plate Number" id="field">%s</xliff:g> (Optional)</string>
     <string name="form_spinner_hint">Select an item</string>
+    <string name="form_required_field_footnote"><![CDATA[<b><font color=#73C2FB>*</font></b>]]> denotes required field</string>
 </resources>

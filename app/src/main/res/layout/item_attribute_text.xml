@@ -17,12 +17,12 @@
         android:labelFor="@+id/attributeInputField"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:textSize="@dimen/fontsize_body2"
-        tools:text="Plain text?"/>
+        tools:text="What's your cat's name?"/>
 
     <EditText
         android:id="@id/attributeInputField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        tools:text="ABC123"/>
+        tools:text="Garfield"/>
 </LinearLayout>

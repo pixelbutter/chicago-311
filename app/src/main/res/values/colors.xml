@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#1F212D</color>
     <color name="colorAccent">@color/mayaBlue</color>
     <color name="colorBackgroundSecondary">@color/platinum</color>
+    <color name="colorError">@color/sanguineRed</color>
 </resources>

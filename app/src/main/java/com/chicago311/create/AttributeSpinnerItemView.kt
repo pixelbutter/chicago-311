@@ -7,6 +7,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.chicago311.R
 import com.chicago311.data.model.ServiceRequestAttribute
+import com.chicago311.util.setTextWithAsterisk
 import kotlinx.android.synthetic.main.item_attribute_spinner.view.*
 
 internal class AttributeSpinnerItemView : AttributeItemView {
@@ -17,10 +18,12 @@ internal class AttributeSpinnerItemView : AttributeItemView {
 
     override fun update(attribute: ServiceRequestAttribute) {
         super.update(attribute)
-        if (attribute.required == true) {
-            attributeSpinnerPrompt.text = attribute.description
-        } else {
-            attributeSpinnerPrompt.text = context.getString(R.string.optional_input_field, attribute.description)
+        attribute.description?.let {
+            if (attribute.required == true) {
+                attributeSpinnerPrompt.setTextWithAsterisk(it)
+            } else {
+                attributeSpinnerPrompt.text = it
+            }
         }
 
         val options = mutableListOf<String>(context.getString(R.string.form_spinner_hint))
