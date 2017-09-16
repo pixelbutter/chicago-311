@@ -7,8 +7,6 @@ import com.stepstone.stepper.VerificationError
 
 abstract class BaseStepperFragment : Fragment(), Step {
 
-
-
     override fun onSelected() {
         // TODO
         Toast.makeText(context, "Stepper fragment: onSelected()", Toast.LENGTH_SHORT).show()
@@ -22,11 +20,5 @@ abstract class BaseStepperFragment : Fragment(), Step {
 
     override fun onError(error: VerificationError) {
         Toast.makeText(context, "Stepper fragment: onError()", Toast.LENGTH_SHORT).show()
-    }
-
-    companion object {
-        fun createFragment(): NewRequestDetailsFragment {
-            return NewRequestDetailsFragment()
-        }
     }
 }

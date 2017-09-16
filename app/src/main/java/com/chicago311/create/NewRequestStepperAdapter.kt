@@ -27,10 +27,10 @@ class NewRequestStepperAdapter(fm: FragmentManager, context: Context) :
     }
 
     override fun createStep(position: Int): Step {
-        when (position) {
-            0 -> return NewRequestDetailsFragment.createFragment()
-            1 -> return NewRequestLocationFragment.createFragment()
-            2 -> return NewRequestContactFragment.createFragment()
+        return when (position) {
+            0 -> NewRequestDetailsFragment.createFragment()
+            1 -> NewRequestLocationFragment.createFragment()
+            2 -> NewRequestContactFragment.createFragment()
             else -> throw IllegalArgumentException("Unsupported position: " + position)
         }
     }

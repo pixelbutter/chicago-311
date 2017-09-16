@@ -23,13 +23,13 @@ internal class AttributeArrayAdapter(context: Context, attributes: List<ServiceR
         val attributeView: AttributeItemView
 
         if (convertView == null) {
-            when (attribute.getInputViewType()) {
-                InputViewType.SPINNER -> attributeView = AttributeSpinnerItemView(context)
-                InputViewType.TEXT -> attributeView = AttributeTextItemView(context)
-                InputViewType.PHONE_NUMBER -> attributeView = AttributeTextItemView(context)
-                InputViewType.NUMBER -> attributeView = AttributeTextItemView(context)
-                InputViewType.DATETIME -> attributeView = AttributeTextItemView(context)
-                else -> attributeView = AttributeTextItemView(context) // todo other types
+            attributeView = when (attribute.getInputViewType()) {
+                InputViewType.SPINNER -> AttributeSpinnerItemView(context)
+                InputViewType.TEXT -> AttributeTextItemView(context)
+                InputViewType.PHONE_NUMBER -> AttributeTextItemView(context)
+                InputViewType.NUMBER -> AttributeTextItemView(context)
+                InputViewType.DATETIME -> AttributeTextItemView(context)
+                else -> AttributeTextItemView(context) // todo other types
             }
         } else {
             attributeView = convertView as AttributeItemView

@@ -43,7 +43,7 @@ internal abstract class AttributeItemView : FrameLayout {
     }
 
     private fun init() {
-        setLayoutParams(FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT))
+        layoutParams = FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
         LayoutInflater.from(context).inflate(getLayoutId(), this)
     }
 }

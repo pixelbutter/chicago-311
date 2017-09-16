@@ -5,13 +5,13 @@ import android.arch.lifecycle.LifecycleRegistryOwner
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.chicago311.R
 import com.chicago311.data.model.ServiceRequirementResponse
 import com.chicago311.data.remote.ApiResponse
+import com.chicago311.util.setTextFromHtml
 import kotlinx.android.synthetic.main.fragment_new_request_details.*
 import timber.log.Timber
 
@@ -36,7 +36,8 @@ class NewRequestDetailsFragment : BaseStepperFragment(), LifecycleRegistryOwner 
                             for (i in 0 until adapter.count) {
                                 attributeContainer.addView(adapter.getView(i, null, null))
                             }
-                            requiredFieldDescription.text = Html.fromHtml(getString(R.string.form_required_field_footnote))
+                            // TODO only show if there are required attributes
+                            requiredFieldDescription.setTextFromHtml(getString(R.string.form_required_field_footnote))
                         }
                     } else {
                         Timber.w("Unknown error :(")
