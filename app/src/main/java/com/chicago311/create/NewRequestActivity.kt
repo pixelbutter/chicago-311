@@ -4,6 +4,7 @@ import android.arch.lifecycle.*
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
@@ -47,15 +48,16 @@ class NewRequestActivity : AppCompatActivity(), LifecycleRegistryOwner, StepperL
     }
 
     override fun onStepSelected(newStepPosition: Int) {
-        Toast.makeText(this, "Step selected: $newStepPosition", Toast.LENGTH_SHORT).show()
+        // no-op - leave to fragment
     }
 
     override fun onError(verificationError: VerificationError?) {
-        Toast.makeText(this, "Step error! ${verificationError.toString()}", Toast.LENGTH_SHORT).show()
+        // TODO
+        Snackbar.make(stepperLayout, verificationError?.errorMessage ?: "unknown error", Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onReturn() {
-        Toast.makeText(this, "Step returned", Toast.LENGTH_SHORT).show()
+        // TODO? no-op - leave to fragment
     }
 
     override fun onCompleted(completeButton: View?) {

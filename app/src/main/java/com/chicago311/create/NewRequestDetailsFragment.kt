@@ -12,10 +12,11 @@ import com.chicago311.R
 import com.chicago311.data.model.ServiceRequirementResponse
 import com.chicago311.data.remote.ApiResponse
 import com.chicago311.util.setTextFromHtml
+import com.stepstone.stepper.VerificationError
 import kotlinx.android.synthetic.main.fragment_new_request_details.*
 import timber.log.Timber
 
-class NewRequestDetailsFragment : BaseStepperFragment(), LifecycleRegistryOwner {
+class NewRequestDetailsFragment : BaseStepperFragment(), LifecycleRegistryOwner, AttributeItemView.InputChangeListener {
 
     private lateinit var viewModel: NewRequestViewModel
     private val lifecycleRegistry = LifecycleRegistry(this)
@@ -32,7 +33,8 @@ class NewRequestDetailsFragment : BaseStepperFragment(), LifecycleRegistryOwner 
                     if (it != null && it.isSuccessful() && it.body != null) {
                         val requirementResponse: ServiceRequirementResponse = it.body
                         requirementResponse.attributes?.let {
-                            val adapter = AttributeArrayAdapter(context, it)
+                            viewModel.initializeInputMap(it)
+                            val adapter = AttributeArrayAdapter(context, it, this)
                             for (i in 0 until adapter.count) {
                                 attributeContainer.addView(adapter.getView(i, null, null))
                             }
@@ -55,6 +57,15 @@ class NewRequestDetailsFragment : BaseStepperFragment(), LifecycleRegistryOwner 
 
     override fun getLifecycle(): LifecycleRegistry {
         return lifecycleRegistry
+    }
+
+    override fun onInputChanged(code: String?, values: List<String>?) {
+        viewModel.updateInput(code, values)
+    }
+
+    override fun verifyStep(): VerificationError? {
+        // todo
+        return if (viewModel.validate()) null else VerificationError("Make sure all required steps are filled out.")
     }
 
     companion object {

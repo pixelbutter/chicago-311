@@ -6,13 +6,12 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import com.chicago311.data.model.ServiceRequestAttribute
 import com.chicago311.data.model.ServiceRequestAttribute.InputViewType
-import timber.log.Timber
 
-internal class AttributeArrayAdapter(context: Context, attributes: List<ServiceRequestAttribute>)
-    : ArrayAdapter<ServiceRequestAttribute>(context, 0, attributes), AttributeItemView.InputChangeListener  {
+internal class AttributeArrayAdapter(context: Context, attributes: List<ServiceRequestAttribute>,
+                                     val inputChangeListener: AttributeItemView.InputChangeListener? = null)
+    : ArrayAdapter<ServiceRequestAttribute>(context, 0, attributes) {
 
     private val attributes: MutableList<ServiceRequestAttribute> = mutableListOf()
-    private val attributeInputMap: MutableMap<String, List<String>> = mutableMapOf()
 
     init {
         this.attributes.addAll(attributes)
@@ -34,17 +33,8 @@ internal class AttributeArrayAdapter(context: Context, attributes: List<ServiceR
         } else {
             attributeView = convertView as AttributeItemView
         }
-        attributeView.setChangeListener(this)
+        attributeView.setChangeListener(inputChangeListener)
         attributeView.update(attribute)
         return attributeView
-    }
-
-    override fun onInputChanged(code: String?, value: List<String>?) {
-        if (code != null && value != null && value.isNotEmpty()) {
-            Timber.d("Input changed: $code -> ${value[0]}")
-            attributeInputMap[code] = value
-        } else {
-            Timber.d("Input changed to default value")
-        }
     }
 }
