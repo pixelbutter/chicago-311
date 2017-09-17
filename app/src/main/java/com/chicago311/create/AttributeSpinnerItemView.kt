@@ -7,7 +7,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.chicago311.R
 import com.chicago311.data.model.ServiceRequestAttribute
-import com.chicago311.util.setTextWithAsterisk
+import com.chicago311.util.setTextWithAsteriskAfter
 import kotlinx.android.synthetic.main.item_attribute_spinner.view.*
 
 internal class AttributeSpinnerItemView : AttributeItemView {
@@ -20,7 +20,7 @@ internal class AttributeSpinnerItemView : AttributeItemView {
         super.update(attribute)
         attribute.description?.let {
             if (attribute.required == true) {
-                attributeSpinnerPrompt.setTextWithAsterisk(it)
+                attributeSpinnerPrompt.setTextWithAsteriskAfter(it)
             } else {
                 attributeSpinnerPrompt.text = it
             }

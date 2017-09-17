@@ -32,5 +32,6 @@
     <string name="phone">Phone number</string>
     <string name="phone_hint">(312) 555-5555</string>
     <string name="form_spinner_hint">Select an item</string>
-    <string name="form_required_field_footnote"><![CDATA[<b><font color=#73C2FB>*</font></b>]]> denotes required field</string>
+    <string name="form_required_footnote_suffix">denotes required field</string>
+    <string name="form_validation_missing_fields">Please select required fields.</string>
 </resources>

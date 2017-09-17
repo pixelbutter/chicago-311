@@ -5,6 +5,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorBackgroundSecondary">@color/colorBackgroundSecondary</item>
+        <item name="colorError">@color/colorError</item>
         <item name="ms_stepperStyle">@style/StepperTheme</item>
     </style>
 
@@ -34,7 +36,10 @@
         <item name="ms_nextButtonColor">?attr/colorPrimary</item>
         <item name="ms_backButtonColor">?attr/colorPrimary</item>
         <item name="ms_tabStepDividerWidth">56dp</item>
-        <item name="ms_bottomNavigationBackground">@color/colorBackgroundSecondary</item>
+        <item name="ms_bottomNavigationBackground">?attr/colorBackgroundSecondary</item>
+        <item name="ms_showErrorStateEnabled">true</item>
+        <item name="ms_showErrorMessageEnabled">true</item>
+        <item name="ms_errorColor">?attr/colorError</item>
     </style>
 
     <style name="StepperTheme.DarkTab" parent="MSDefaultStepperLayoutTheme">

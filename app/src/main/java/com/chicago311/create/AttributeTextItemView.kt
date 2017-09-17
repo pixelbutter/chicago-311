@@ -8,7 +8,7 @@ import android.util.AttributeSet
 import com.chicago311.R
 import com.chicago311.data.model.ServiceRequestAttribute
 import com.chicago311.data.model.ServiceRequestAttribute.InputViewType
-import com.chicago311.util.setTextWithAsterisk
+import com.chicago311.util.setTextWithAsteriskAfter
 import kotlinx.android.synthetic.main.item_attribute_text.view.*
 
 internal class AttributeTextItemView : AttributeItemView {
@@ -23,7 +23,7 @@ internal class AttributeTextItemView : AttributeItemView {
 
         attribute.description?.let {
             if (attribute.required == true) {
-                attributePrompt.setTextWithAsterisk(it)
+                attributePrompt.setTextWithAsteriskAfter(it)
             } else {
                 attributePrompt.text = it
             }

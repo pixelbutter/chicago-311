@@ -47,6 +47,6 @@
             android:textSize="@dimen/fontsize_footnote"
             android:textStyle="italic"
             tools:visibility="visible"
-            tools:text="@string/form_required_field_footnote"/>
+            tools:text="@string/form_required_footnote_suffix"/>
     </LinearLayout>
 </ScrollView>

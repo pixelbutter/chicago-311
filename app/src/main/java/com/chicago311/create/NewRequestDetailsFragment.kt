@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import com.chicago311.R
 import com.chicago311.data.model.ServiceRequirementResponse
 import com.chicago311.data.remote.ApiResponse
-import com.chicago311.util.setTextFromHtml
+import com.chicago311.util.setTextWithAsteriskBefore
 import com.stepstone.stepper.VerificationError
 import kotlinx.android.synthetic.main.fragment_new_request_details.*
 import timber.log.Timber
@@ -39,7 +39,7 @@ class NewRequestDetailsFragment : BaseStepperFragment(), LifecycleRegistryOwner,
                                 attributeContainer.addView(adapter.getView(i, null, null))
                             }
                             // TODO only show if there are required attributes
-                            requiredFieldDescription.setTextFromHtml(getString(R.string.form_required_field_footnote))
+                            requiredFieldDescription.setTextWithAsteriskBefore(getString(R.string.form_required_footnote_suffix))
                         }
                     } else {
                         Timber.w("Unknown error :(")
@@ -64,8 +64,7 @@ class NewRequestDetailsFragment : BaseStepperFragment(), LifecycleRegistryOwner,
     }
 
     override fun verifyStep(): VerificationError? {
-        // todo
-        return if (viewModel.validate()) null else VerificationError("Make sure all required steps are filled out.")
+        return if (viewModel.validate()) null else VerificationError(getString(R.string.form_validation_missing_fields))
     }
 
     companion object {
