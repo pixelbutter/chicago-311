@@ -1,7 +1,7 @@
 package com.chicago311.di
 
 import com.chicago311.create.NewRequestActivity
-import com.chicago311.create.NewRequestListFragment
+import com.chicago311.create.list.NewRequestListFragment
 import dagger.Component
 import javax.inject.Singleton
 

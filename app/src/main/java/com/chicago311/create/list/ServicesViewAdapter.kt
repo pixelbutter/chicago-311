@@ -1,4 +1,4 @@
-package com.chicago311.create
+package com.chicago311.create.list
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

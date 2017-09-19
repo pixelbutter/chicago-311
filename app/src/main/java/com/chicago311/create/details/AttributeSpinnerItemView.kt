@@ -1,4 +1,4 @@
-package com.chicago311.create
+package com.chicago311.create.details
 
 import android.content.Context
 import android.util.AttributeSet

@@ -1,4 +1,4 @@
-package com.chicago311.create
+package com.chicago311.create.list
 
 import android.arch.lifecycle.LifecycleFragment
 import android.arch.lifecycle.Observer
@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.chicago311.ChicagoApplication
 import com.chicago311.R
+import com.chicago311.create.NewRequestActivity
 import com.chicago311.data.Status
 import kotlinx.android.synthetic.main.fragment_new_request_list.*
 import javax.inject.Inject

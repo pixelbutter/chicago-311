@@ -2,7 +2,7 @@ package com.chicago311.di
 
 import android.arch.lifecycle.ViewModel
 import com.chicago311.create.NewRequestViewModel
-import com.chicago311.create.ServiceListViewModel
+import com.chicago311.create.list.ServiceListViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

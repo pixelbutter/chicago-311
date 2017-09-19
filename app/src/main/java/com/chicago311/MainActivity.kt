@@ -7,7 +7,7 @@ import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import com.chicago311.create.NewRequestListFragment
+import com.chicago311.create.list.NewRequestListFragment
 import com.chicago311.help.HelpFragment
 import com.chicago311.requests.RequestsFragment
 import kotlinx.android.synthetic.main.activity_main.*

@@ -1,4 +1,4 @@
-package com.chicago311.create
+package com.chicago311.create.list
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel

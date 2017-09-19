@@ -4,6 +4,9 @@ import android.content.Context
 import android.support.annotation.IntRange
 import android.support.v4.app.FragmentManager
 import com.chicago311.R
+import com.chicago311.create.contact.NewRequestContactFragment
+import com.chicago311.create.details.NewRequestDetailsFragment
+import com.chicago311.create.location.NewRequestLocationFragment
 import com.stepstone.stepper.Step
 import com.stepstone.stepper.adapter.AbstractFragmentStepAdapter
 import com.stepstone.stepper.viewmodel.StepViewModel

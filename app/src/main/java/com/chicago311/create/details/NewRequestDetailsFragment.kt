@@ -1,4 +1,4 @@
-package com.chicago311.create
+package com.chicago311.create.details
 
 import android.arch.lifecycle.LifecycleRegistry
 import android.arch.lifecycle.LifecycleRegistryOwner
@@ -9,6 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.chicago311.R
+import com.chicago311.create.BaseStepperFragment
+import com.chicago311.create.NewRequestViewModel
+import com.chicago311.create.details.AttributeArrayAdapter
+import com.chicago311.create.details.AttributeItemView
 import com.chicago311.data.model.ServiceRequirementResponse
 import com.chicago311.data.remote.ApiResponse
 import com.chicago311.util.setTextWithAsteriskBefore
