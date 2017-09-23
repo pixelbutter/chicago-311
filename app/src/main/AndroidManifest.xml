@@ -3,6 +3,7 @@
     package="com.chicago311">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:name=".ChicagoApplication"
@@ -28,6 +29,10 @@
             android:name=".create.NewRequestActivity"
             android:label="@string/title_new_request"
             android:parentActivityName=".MainActivity"/>
-    </application>
 
+        <!-- todo remove key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDkvjKkprcPf24S6MJmFujaGaefKfPRGcE"/>
+    </application>
 </manifest>
