@@ -2,4 +2,4 @@
 package com.chicago311
 
 const val EXTRA_SERVICE_CODE: String = "extraServiceRequestId"
-const val LOCATION_PERMISSION_REQUEST_CODE = 1
+const val REQUEST_CODE_LOCATION_PERMISSION = 1

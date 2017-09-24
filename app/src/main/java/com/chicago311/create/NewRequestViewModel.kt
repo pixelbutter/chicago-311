@@ -8,7 +8,7 @@ import com.chicago311.repository.ServiceRequestRepository
 import timber.log.Timber
 import javax.inject.Inject
 
-internal class NewRequestViewModel @Inject constructor(
+class NewRequestViewModel @Inject constructor(
         val repository: ServiceRequestRepository) : ViewModel() {
 
     private val requiredInputMap: MutableMap<String, List<String>?> = mutableMapOf()

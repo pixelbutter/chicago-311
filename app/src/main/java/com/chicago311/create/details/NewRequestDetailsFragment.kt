@@ -11,8 +11,6 @@ import android.view.ViewGroup
 import com.chicago311.R
 import com.chicago311.create.BaseStepperFragment
 import com.chicago311.create.NewRequestViewModel
-import com.chicago311.create.details.AttributeArrayAdapter
-import com.chicago311.create.details.AttributeItemView
 import com.chicago311.data.model.ServiceRequirementResponse
 import com.chicago311.data.remote.ApiResponse
 import com.chicago311.util.setTextWithAsteriskBefore
@@ -22,7 +20,7 @@ import timber.log.Timber
 
 class NewRequestDetailsFragment : BaseStepperFragment(), LifecycleRegistryOwner, AttributeItemView.InputChangeListener {
 
-    private lateinit var viewModel: NewRequestViewModel
+    private lateinit var viewModel: NewRequestViewModel // todo create newRequestDetailsViewModel
     private val lifecycleRegistry = LifecycleRegistry(this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
