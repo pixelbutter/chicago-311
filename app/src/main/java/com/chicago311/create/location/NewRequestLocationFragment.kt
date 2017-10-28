@@ -24,7 +24,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_new_request_location.*
 import timber.log.Timber
 
-class NewRequestLocationFragment : BaseStepperFragment(), OnMapReadyCallback, FragmentCompat.OnRequestPermissionsResultCallback {
+class NewRequestLocationFragment : BaseStepperFragment(), OnMapReadyCallback,
+        FragmentCompat.OnRequestPermissionsResultCallback {
 
     private lateinit var locationViewModel: NewRequestLocationViewModel
     private var map: GoogleMap? = null
@@ -49,14 +50,15 @@ class NewRequestLocationFragment : BaseStepperFragment(), OnMapReadyCallback, Fr
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        locationViewModel = ViewModelProviders.of(this, viewModelFactory).get(NewRequestLocationViewModel::class.java)
+        locationViewModel = ViewModelProviders.of(this, viewModelFactory)
+                .get(NewRequestLocationViewModel::class.java)
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
-                                            grantResults: IntArray) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         permissionGranted = false
         when (requestCode) {
-            REQUEST_CODE_LOCATION_PERMISSION -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            REQUEST_CODE_LOCATION_PERMISSION -> if (grantResults.isNotEmpty()
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 permissionGranted = true
                 enableMyLocation()
             }
@@ -83,7 +85,8 @@ class NewRequestLocationFragment : BaseStepperFragment(), OnMapReadyCallback, Fr
 
     private fun getLocationPermission() {
         val locationPermission = Manifest.permission.ACCESS_FINE_LOCATION
-        if (ContextCompat.checkSelfPermission(activity.applicationContext, locationPermission) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(activity.applicationContext,
+                locationPermission) == PackageManager.PERMISSION_GRANTED) {
             permissionGranted = true
             bindLocationListener()
             enableMyLocation()
@@ -99,7 +102,8 @@ class NewRequestLocationFragment : BaseStepperFragment(), OnMapReadyCallback, Fr
 
     private fun enableMyLocation() {
         val locationPermission = Manifest.permission.ACCESS_FINE_LOCATION
-        if (ContextCompat.checkSelfPermission(context.applicationContext, locationPermission) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(context.applicationContext, locationPermission)
+                != PackageManager.PERMISSION_GRANTED) {
             getLocationPermission()
         } else if (map != null) {
             map?.isMyLocationEnabled = true
@@ -126,7 +130,6 @@ class NewRequestLocationFragment : BaseStepperFragment(), OnMapReadyCallback, Fr
 
         override fun onProviderDisabled(provider: String?) {
         }
-
     }
 
     companion object {

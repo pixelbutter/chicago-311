@@ -22,12 +22,12 @@ class NewRequestViewModel @Inject constructor(
     })
 
     fun initializeInputMap(attributesResponse: List<ServiceRequestAttribute>) {
-        attributesResponse.forEach {
-            if (!it.code.isNullOrEmpty() && it.required != null) {
-                if (it.required) {
-                    requiredInputMap[it.code!!] = emptyList()
+        attributesResponse.forEach { requestAttribute ->
+            if (!requestAttribute.code.isNullOrEmpty()) {
+                if (requestAttribute.required == true) {
+                    requiredInputMap[requestAttribute.code!!] = emptyList()
                 } else {
-                    optionalInputMap[it.code!!] = emptyList()
+                    optionalInputMap[requestAttribute.code!!] = emptyList()
                 }
             }
         }
@@ -41,14 +41,16 @@ class NewRequestViewModel @Inject constructor(
 
     fun updateInput(code: String?, values: List<String>?) {
         code?.let {
-            if (requiredInputMap.containsKey(code)) {
-                Timber.d("Required input changed: $code -> $values")
-                requiredInputMap[it] = values
-            } else if (optionalInputMap.containsKey(code)) {
-                Timber.d("Optional input changed: $code -> $values")
-                optionalInputMap[it] = values
-            } else {
-                Timber.d("Code not found: $code")
+            when {
+                requiredInputMap.containsKey(code) -> {
+                    Timber.d("Required input changed: $code -> $values")
+                    requiredInputMap[it] = values
+                }
+                optionalInputMap.containsKey(code) -> {
+                    Timber.d("Optional input changed: $code -> $values")
+                    optionalInputMap[it] = values
+                }
+                else -> Timber.d("Code not found $code")
             }
         }
     }

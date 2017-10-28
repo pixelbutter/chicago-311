@@ -9,11 +9,11 @@ internal class NewRequestLocationViewModel @Inject constructor() : ViewModel() {
     private var centerLocation = DEFAULT_LAT_LNG
     private var selectedLocation: LatLng? = null
 
-    internal fun updateCenterLocation(latLng: LatLng?) {
+    fun updateCenterLocation(latLng: LatLng?) {
         centerLocation = latLng ?: DEFAULT_LAT_LNG
     }
 
-    internal fun getCameraCenterLocation(): LatLng {
+    fun getCameraCenterLocation(): LatLng {
         return selectedLocation ?: centerLocation
     }
 

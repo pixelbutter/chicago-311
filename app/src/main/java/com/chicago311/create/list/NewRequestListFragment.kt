@@ -7,7 +7,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,9 +38,9 @@ class NewRequestListFragment : LifecycleFragment() {
         setupViews()
 
         // Handle changes emitted by LiveData
-        viewModel.getServices().observe(this, Observer {
+        viewModel.getServices().observe(this, Observer { resource ->
             // TODO - enhance error scenarios - spinner, retry, etc
-            when (it?.status) {
+            when (resource?.status) {
                 Status.LOADING -> {
                     availableServicesText.visibility = View.VISIBLE
                     servicesRecyclerView.visibility = View.GONE
@@ -50,18 +49,18 @@ class NewRequestListFragment : LifecycleFragment() {
                 Status.ERROR -> {
                     availableServicesText.visibility = View.VISIBLE
                     servicesRecyclerView.visibility = View.GONE
-                    availableServicesText.text = if (TextUtils.isEmpty(it.message)) {
+                    availableServicesText.text = if (resource.message.isNullOrBlank() == true) {
                         getString(R.string.error_message_request_list_failed)
                     } else {
-                        it.message
+                        resource.message
                     }
                 }
                 Status.SUCCESS -> {
-                    val data = it.data
+                    val data = resource.data
                     if (data?.isNotEmpty() == true) {
                         availableServicesText.visibility = View.GONE
                         servicesRecyclerView.visibility = View.VISIBLE
-                        listAdapter.updateData(it.data)
+                        listAdapter.updateData(resource.data)
                     } else {
                         availableServicesText.visibility = View.VISIBLE
                         servicesRecyclerView.visibility = View.GONE
