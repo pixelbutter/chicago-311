@@ -11,8 +11,7 @@ import com.stepstone.stepper.Step
 import com.stepstone.stepper.adapter.AbstractFragmentStepAdapter
 import com.stepstone.stepper.viewmodel.StepViewModel
 
-class NewRequestStepperAdapter(fm: FragmentManager, context: Context) :
-        AbstractFragmentStepAdapter(fm, context) {
+class NewRequestStepperAdapter(fm: FragmentManager, context: Context) : AbstractFragmentStepAdapter(fm, context) {
 
     override fun getViewModel(@IntRange(from = 0) position: Int): StepViewModel {
         // TODO

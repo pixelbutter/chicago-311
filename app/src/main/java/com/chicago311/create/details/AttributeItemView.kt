@@ -9,14 +9,14 @@ import android.widget.FrameLayout
 import com.chicago311.data.model.ServiceRequestAttribute
 
 // todo move biz logic out of view
-internal abstract class AttributeItemView : FrameLayout {
+abstract class AttributeItemView : FrameLayout {
 
-    internal interface InputChangeListener {
+    interface InputChangeListener {
         fun onInputChanged(code: String?, values: List<String>?)
     }
 
-    internal var attribute: ServiceRequestAttribute? = null
-    internal var inputChangeListener: InputChangeListener? = null
+    var inputChangeListener: InputChangeListener? = null
+    private var attribute: ServiceRequestAttribute? = null
 
     constructor(context: Context) : super(context) {
         init()
@@ -38,7 +38,7 @@ internal abstract class AttributeItemView : FrameLayout {
     }
 
     @CallSuper
-    open internal fun update(attribute: ServiceRequestAttribute) {
+    open fun update(attribute: ServiceRequestAttribute) {
         this.attribute = attribute
     }
 

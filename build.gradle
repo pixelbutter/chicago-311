@@ -3,11 +3,11 @@
 buildscript {
     ext.versions = [
             'kotlin'            : '1.1.51',
-            'support_library'   : '26.0.2',
+            'support_library'   : '26.1.0',
             'dagger'            : '2.11',
             'retrofit'          : '2.3.0',
             'leak_canary'       : '1.5.1',
-            'arch_components'   : '1.0.0-alpha9'
+            'arch_components'   : '1.0.0'
     ]
     repositories {
         google()

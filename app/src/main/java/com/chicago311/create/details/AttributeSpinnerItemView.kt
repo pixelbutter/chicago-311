@@ -10,7 +10,7 @@ import com.chicago311.data.model.ServiceRequestAttribute
 import com.chicago311.util.setTextWithAsteriskAfter
 import kotlinx.android.synthetic.main.item_attribute_spinner.view.*
 
-internal class AttributeSpinnerItemView : AttributeItemView {
+class AttributeSpinnerItemView : AttributeItemView {
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
@@ -18,17 +18,17 @@ internal class AttributeSpinnerItemView : AttributeItemView {
 
     override fun update(attribute: ServiceRequestAttribute) {
         super.update(attribute)
-        attribute.description?.let {
+        attribute.description?.let { attributePrompt ->
             if (attribute.required == true) {
-                attributeSpinnerPrompt.setTextWithAsteriskAfter(it)
+                attributeSpinnerPrompt.setTextWithAsteriskAfter(attributePrompt)
             } else {
-                attributeSpinnerPrompt.text = it
+                attributeSpinnerPrompt.text = attributePrompt
             }
         }
 
         val options = mutableListOf<String>(context.getString(R.string.form_spinner_hint))
         if (attribute.options != null) {
-            options.addAll(attribute.options.map { it.label })
+            options.addAll(attribute.options.map { option -> option.label })
         }
 
         val optionsAdapter = ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, options)

@@ -1,6 +1,8 @@
 package com.chicago311.create
 
-import android.arch.lifecycle.*
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -11,10 +13,9 @@ import com.chicago311.R
 import kotlinx.android.synthetic.main.activity_new_request.*
 import javax.inject.Inject
 
-class NewRequestActivity : AppCompatActivity(), LifecycleRegistryOwner {
+class NewRequestActivity : AppCompatActivity() {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val lifecycleRegistry = LifecycleRegistry(this)
     private lateinit var viewModel: NewRequestViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,10 +35,6 @@ class NewRequestActivity : AppCompatActivity(), LifecycleRegistryOwner {
                 })
 
         viewModel.updateCode(serviceCode)
-    }
-
-    override fun getLifecycle(): LifecycleRegistry {
-        return lifecycleRegistry
     }
 
     override fun onBackPressed() {

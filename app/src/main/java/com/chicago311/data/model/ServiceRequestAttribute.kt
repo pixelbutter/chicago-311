@@ -2,6 +2,13 @@ package com.chicago311.data.model
 
 import com.squareup.moshi.Json
 
+private const val CODE_PHONE_NUMBER = "A511OPTN"
+private const val INPUT_TYPE_STRING = "string"
+private const val INPUT_TYPE_SINGLE_VALUE_LIST = "singlevaluelist"
+private const val INPUT_TYPE_NUMBER = "number"
+private const val INPUT_TYPE_DATETIME = "datetime"
+private const val INPUT_TYPE_MULTIVALUE_LIST = "multivaluelist"
+
 data class ServiceRequestAttribute(
         val code: String? = null,
         @Json(name = "datatype")
@@ -34,14 +41,5 @@ data class ServiceRequestAttribute(
             else -> type = InputViewType.UNKNOWN
         }
         return type
-    }
-
-    companion object {
-        private const val CODE_PHONE_NUMBER = "A511OPTN"
-        private const val INPUT_TYPE_STRING = "string"
-        private const val INPUT_TYPE_SINGLE_VALUE_LIST = "singlevaluelist"
-        private const val INPUT_TYPE_NUMBER = "number"
-        private const val INPUT_TYPE_DATETIME = "datetime"
-        private const val INPUT_TYPE_MULTIVALUE_LIST = "multivaluelist"
     }
 }

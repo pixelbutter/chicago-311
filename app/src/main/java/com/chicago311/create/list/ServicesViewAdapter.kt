@@ -8,8 +8,8 @@ import com.chicago311.R
 import com.chicago311.data.model.ServiceRequest
 import kotlinx.android.synthetic.main.item_service_request.view.*
 
-internal class ServicesViewAdapter(private var services: ArrayList<ServiceRequest>,
-                                   private val itemClick: (String) -> Unit) : RecyclerView.Adapter<ServicesViewAdapter.ViewHolder>() {
+class ServicesViewAdapter(private var services: ArrayList<ServiceRequest>,
+                          private val itemClick: (String) -> Unit) : RecyclerView.Adapter<ServicesViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_service_request, parent, false)

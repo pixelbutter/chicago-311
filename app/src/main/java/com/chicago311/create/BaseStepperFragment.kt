@@ -1,15 +1,15 @@
 package com.chicago311.create
 
-import android.arch.lifecycle.LifecycleFragment
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import com.chicago311.ChicagoApplication
 import com.stepstone.stepper.Step
 import com.stepstone.stepper.VerificationError
 import javax.inject.Inject
 
-abstract class BaseStepperFragment : LifecycleFragment(), Step {
+abstract class BaseStepperFragment : Fragment(), Step {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     protected lateinit var newRequestViewModel: NewRequestViewModel

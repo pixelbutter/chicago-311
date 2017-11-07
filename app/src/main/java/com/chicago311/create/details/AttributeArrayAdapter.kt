@@ -7,7 +7,7 @@ import android.widget.ArrayAdapter
 import com.chicago311.data.model.ServiceRequestAttribute
 import com.chicago311.data.model.ServiceRequestAttribute.InputViewType
 
-internal class AttributeArrayAdapter(context: Context, attributes: List<ServiceRequestAttribute>,
+class AttributeArrayAdapter(context: Context, attributes: List<ServiceRequestAttribute>,
                                      val inputChangeListener: AttributeItemView.InputChangeListener? = null)
     : ArrayAdapter<ServiceRequestAttribute>(context, 0, attributes) {
 

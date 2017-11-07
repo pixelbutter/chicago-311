@@ -1,7 +1,5 @@
 package com.chicago311.create.details
 
-import android.arch.lifecycle.LifecycleRegistry
-import android.arch.lifecycle.LifecycleRegistryOwner
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -18,10 +16,9 @@ import com.stepstone.stepper.VerificationError
 import kotlinx.android.synthetic.main.fragment_new_request_details.*
 import timber.log.Timber
 
-class NewRequestDetailsFragment : BaseStepperFragment(), LifecycleRegistryOwner, AttributeItemView.InputChangeListener {
+class NewRequestDetailsFragment : BaseStepperFragment(), AttributeItemView.InputChangeListener {
 
     private lateinit var viewModel: NewRequestViewModel // todo create newRequestDetailsViewModel
-    private val lifecycleRegistry = LifecycleRegistry(this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.fragment_new_request_details, container, false)
@@ -55,10 +52,6 @@ class NewRequestDetailsFragment : BaseStepperFragment(), LifecycleRegistryOwner,
                         description.text = it.description
                     }
                 })
-    }
-
-    override fun getLifecycle(): LifecycleRegistry {
-        return lifecycleRegistry
     }
 
     override fun onInputChanged(code: String?, values: List<String>?) {

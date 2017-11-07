@@ -11,7 +11,7 @@ import com.chicago311.data.model.ServiceRequestAttribute.InputViewType
 import com.chicago311.util.setTextWithAsteriskAfter
 import kotlinx.android.synthetic.main.item_attribute_text.view.*
 
-internal class AttributeTextItemView : AttributeItemView {
+class AttributeTextItemView : AttributeItemView {
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)

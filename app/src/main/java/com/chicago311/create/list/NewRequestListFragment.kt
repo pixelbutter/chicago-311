@@ -1,10 +1,10 @@
 package com.chicago311.create.list
 
-import android.arch.lifecycle.LifecycleFragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -17,7 +17,7 @@ import com.chicago311.data.Status
 import kotlinx.android.synthetic.main.fragment_new_request_list.*
 import javax.inject.Inject
 
-class NewRequestListFragment : LifecycleFragment() {
+class NewRequestListFragment : Fragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: ServiceListViewModel
