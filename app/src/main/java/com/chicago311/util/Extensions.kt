@@ -1,9 +1,11 @@
 package com.chicago311.util
 
 import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Build
 import android.support.annotation.AttrRes
 import android.support.annotation.ColorInt
+import android.support.v4.content.ContextCompat
 import android.text.Html
 import android.text.Spannable
 import android.text.SpannableStringBuilder
@@ -46,4 +48,8 @@ fun Context.getThemeColor(@AttrRes attrRes: Int): Int {
     val typedValue = TypedValue()
     this.theme.resolveAttribute(attrRes, typedValue, true)
     return typedValue.data
+}
+
+fun Context.isPermissionGranted(permission: String): Boolean {
+    return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
 }

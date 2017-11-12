@@ -16,18 +16,6 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="TextAppearance.Action" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/colorAccent</item>
-        <item name="android:textSize">@dimen/fontsize_body2</item>
-    </style>
-
-    <style name="TextAppearance.InputHeader" parent="TextAppearance.AppCompat.Body1">
-        <item name="android:letterSpacing" tools:targetApi="lollipop">0.25</item>
-        <item name="android:textSize">@dimen/fontsize_footnote</item>
-        <item name="android:textAllCaps">true</item>
-    </style>
-
     <style name="StepperTheme">
         <item name="ms_stepperType">tabs</item>
         <item name="ms_stepperLayoutTheme">@style/StepperTheme.DarkTab</item>

@@ -11,7 +11,8 @@ import com.stepstone.stepper.Step
 import com.stepstone.stepper.adapter.AbstractFragmentStepAdapter
 import com.stepstone.stepper.viewmodel.StepViewModel
 
-class NewRequestStepperAdapter(fm: FragmentManager, context: Context) : AbstractFragmentStepAdapter(fm, context) {
+class NewRequestStepperAdapter(private val serviceRequestCode: String, fm: FragmentManager, context: Context) :
+        AbstractFragmentStepAdapter(fm, context) {
 
     override fun getViewModel(@IntRange(from = 0) position: Int): StepViewModel {
         // TODO
@@ -30,7 +31,7 @@ class NewRequestStepperAdapter(fm: FragmentManager, context: Context) : Abstract
 
     override fun createStep(position: Int): Step {
         return when (position) {
-            0 -> NewRequestDetailsFragment.createFragment()
+            0 -> NewRequestDetailsFragment.createFragment(serviceRequestCode)
             1 -> NewRequestLocationFragment.createFragment()
             2 -> NewRequestContactFragment.createFragment()
             else -> throw IllegalArgumentException("Unsupported position: " + position)

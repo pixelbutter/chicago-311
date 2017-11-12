@@ -5,14 +5,15 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.chicago311.ChicagoApplication
-import com.stepstone.stepper.Step
+import com.stepstone.stepper.BlockingStep
+import com.stepstone.stepper.StepperLayout
 import com.stepstone.stepper.VerificationError
 import javax.inject.Inject
 
-abstract class BaseStepperFragment : Fragment(), Step {
+abstract class BaseStepperFragment : Fragment(), BlockingStep {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
-    protected lateinit var newRequestViewModel: NewRequestViewModel
+    private lateinit var newRequestViewModel: NewRequestViewModel
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -20,16 +21,25 @@ abstract class BaseStepperFragment : Fragment(), Step {
         newRequestViewModel = ViewModelProviders.of(activity).get(NewRequestViewModel::class.java)
     }
 
-    override fun onSelected() {
-        // TODO
+    protected abstract fun saveStepData(parentViewModel: NewRequestViewModel)
+    protected abstract fun clearStepData(parentViewModel: NewRequestViewModel)
+
+    override fun onNextClicked(callback: StepperLayout.OnNextClickedCallback?) {
+        saveStepData(newRequestViewModel)
+        callback?.goToNextStep()
     }
 
-    override fun verifyStep(): VerificationError? {
-        // TODO
-        return null
+    override fun onCompleteClicked(callback: StepperLayout.OnCompleteClickedCallback?) {
+        saveStepData(newRequestViewModel)
+        callback?.complete()
     }
 
-    override fun onError(error: VerificationError) {
-        // TODO
+    override fun onBackClicked(callback: StepperLayout.OnBackClickedCallback?) {
+        clearStepData(newRequestViewModel)
+        callback?.goToPrevStep()
     }
+
+    override fun onError(error: VerificationError) = Unit
+
+    override fun onSelected() = Unit
 }

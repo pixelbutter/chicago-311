@@ -34,4 +34,7 @@
     <string name="form_spinner_hint">Select an item</string>
     <string name="form_required_footnote_suffix">denotes required field</string>
     <string name="form_validation_missing_fields">Please select required fields.</string>
+
+    <!-- location -->
+    <string name="location_permission_warning">Enable current location for most accurate results</string>
 </resources>

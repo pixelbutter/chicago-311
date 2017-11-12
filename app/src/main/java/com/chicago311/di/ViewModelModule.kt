@@ -2,6 +2,7 @@ package com.chicago311.di
 
 import android.arch.lifecycle.ViewModel
 import com.chicago311.create.NewRequestViewModel
+import com.chicago311.create.details.NewRequestDetailsViewModel
 import com.chicago311.create.list.ServiceListViewModel
 import com.chicago311.create.location.NewRequestLocationViewModel
 import dagger.Binds
@@ -20,6 +21,11 @@ internal abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(NewRequestViewModel::class)
     abstract fun provideNewRequestViewModel(viewModel: NewRequestViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(NewRequestDetailsViewModel::class)
+    abstract fun provideNewRequestDetailsViewModel(viewModel: NewRequestDetailsViewModel): ViewModel
 
     @Binds
     @IntoMap

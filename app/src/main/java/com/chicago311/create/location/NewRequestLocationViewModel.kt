@@ -1,22 +1,29 @@
 package com.chicago311.create.location
 
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.google.android.gms.maps.model.LatLng
+import com.chicago311.create.NewRequestViewModel
+import com.google.android.gms.location.places.Place
 import javax.inject.Inject
-
-@JvmField
-val DEFAULT_LAT_LNG = LatLng(41.881832, -87.623177)
 
 class NewRequestLocationViewModel @Inject constructor() : ViewModel() {
 
-    private var centerLocation = DEFAULT_LAT_LNG
-    private var selectedLocation: LatLng? = null
+    private var selectedPlace: MutableLiveData<Place?> = MutableLiveData()
 
-    fun updateCenterLocation(latLng: LatLng?) {
-        centerLocation = latLng ?: DEFAULT_LAT_LNG
+    fun getObservableSelectedPlace(): LiveData<Place?> = selectedPlace
+
+    fun onNewSelectedPlace(place: Place) {
+        selectedPlace.value = place
     }
 
-    fun getCameraCenterLocation(): LatLng {
-        return selectedLocation ?: centerLocation
+    fun onSaveData(parentViewModel: NewRequestViewModel) {
+        selectedPlace.value?.let { place ->
+            parentViewModel.updateLocation(place)
+        }
+    }
+
+    fun onClearData(parentViewModel: NewRequestViewModel) {
+        parentViewModel.clearLocation()
     }
 }

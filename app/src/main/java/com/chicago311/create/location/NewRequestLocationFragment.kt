@@ -1,36 +1,29 @@
 package com.chicago311.create.location
 
 import android.Manifest
+import android.app.Activity
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.pm.PackageManager
-import android.location.Location
-import android.location.LocationListener
+import android.content.Intent
 import android.os.Bundle
 import android.support.v13.app.FragmentCompat
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
+import android.support.v4.content.PermissionChecker.PERMISSION_GRANTED
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.chicago311.BoundLocationManager
+import android.widget.Toast
 import com.chicago311.R
 import com.chicago311.REQUEST_CODE_LOCATION_PERMISSION
 import com.chicago311.create.BaseStepperFragment
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.chicago311.create.NewRequestViewModel
+import com.chicago311.util.isPermissionGranted
+import com.google.android.gms.location.places.Place
+import com.google.android.gms.location.places.ui.PlacePicker
+import com.stepstone.stepper.VerificationError
 import kotlinx.android.synthetic.main.fragment_new_request_location.*
-import timber.log.Timber
 
-class NewRequestLocationFragment : BaseStepperFragment(), OnMapReadyCallback,
-        FragmentCompat.OnRequestPermissionsResultCallback {
-
-    private lateinit var locationViewModel: NewRequestLocationViewModel
-    private var map: GoogleMap? = null
-    private var permissionGranted = false
-    private val gpsListener = NewRequestLocationListener()
+class NewRequestLocationFragment : BaseStepperFragment(), FragmentCompat.OnRequestPermissionsResultCallback {
+    private lateinit var viewModel: NewRequestLocationViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_new_request_location, container, false) as View
@@ -38,97 +31,70 @@ class NewRequestLocationFragment : BaseStepperFragment(), OnMapReadyCallback,
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var mapViewBundle: Bundle? = null
-        savedInstanceState?.let {
-            mapViewBundle = it.getBundle(MAPVIEW_BUNDLE_KEY)
-        }
-
-        mapView.onCreate(mapViewBundle)
-        mapView.onResume()
-        mapView.getMapAsync(this)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        locationViewModel = ViewModelProviders.of(this, viewModelFactory)
-                .get(NewRequestLocationViewModel::class.java)
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        permissionGranted = false
-        when (requestCode) {
-            REQUEST_CODE_LOCATION_PERMISSION -> if (grantResults.isNotEmpty()
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                permissionGranted = true
-                enableMyLocation()
+        chooseLocationButton.setOnClickListener {
+            if (activity.isPermissionGranted(Manifest.permission.ACCESS_FINE_LOCATION)) {
+                goToPlacePicker()
+            } else {
+                requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_CODE_LOCATION_PERMISSION)
             }
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putBundle(MAPVIEW_BUNDLE_KEY, outState.getBundle(MAPVIEW_BUNDLE_KEY) ?: Bundle())
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(NewRequestLocationViewModel::class.java)
+        viewModel.getObservableSelectedPlace().observe(this, Observer { place ->
+            handleSelectedPlace(place)
+        })
     }
 
-    override fun onMapReady(map: GoogleMap) {
-        this.map = map
-        map.clear()
-        val cameraCenter = locationViewModel.getCameraCenterLocation()
-        map.addMarker(MarkerOptions().position(cameraCenter).title("Selected Location")) // todo use selectedLocation
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(cameraCenter, 15f))
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PLACE_PICKER_REQUEST) {
+            if (resultCode == Activity.RESULT_OK) {
+                viewModel.onNewSelectedPlace(PlacePicker.getPlace(context, data))
+            }
+        }
     }
 
-    override fun onSelected() {
-        getLocationPermission()
-        super.onSelected()
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_CODE_LOCATION_PERMISSION -> {
+                if (grantResults.isEmpty() || grantResults[0] != PERMISSION_GRANTED) {
+                    // Still use place-picker which defaults to device location
+                    Toast.makeText(context.applicationContext,
+                            getString(R.string.location_permission_warning), Toast.LENGTH_SHORT).show()
+                }
+                goToPlacePicker()
+            }
+        }
     }
 
-    private fun getLocationPermission() {
-        val locationPermission = Manifest.permission.ACCESS_FINE_LOCATION
-        if (ContextCompat.checkSelfPermission(activity.applicationContext,
-                locationPermission) == PackageManager.PERMISSION_GRANTED) {
-            permissionGranted = true
-            bindLocationListener()
-            enableMyLocation()
+    override fun saveStepData(parentViewModel: NewRequestViewModel) {
+        viewModel.onSaveData(parentViewModel)
+    }
+
+    override fun clearStepData(parentViewModel: NewRequestViewModel) {
+        viewModel.onClearData(parentViewModel)
+    }
+
+    override fun verifyStep(): VerificationError? {
+        // TODO("not implemented")
+        return null
+    }
+
+    private fun goToPlacePicker() {
+        startActivityForResult(PlacePicker.IntentBuilder().build(activity), PLACE_PICKER_REQUEST)
+    }
+
+    private fun handleSelectedPlace(place: Place?) {
+        if (place == null) {
+            locationText.text = "No location selected"
+            chooseLocationButton.text = "Choose location"
         } else {
-            ActivityCompat.requestPermissions(activity,
-                    arrayOf(locationPermission), REQUEST_CODE_LOCATION_PERMISSION)
-        }
-    }
-
-    private fun bindLocationListener() {
-        BoundLocationManager.bindLocationListenerIn(this, gpsListener, activity.applicationContext)
-    }
-
-    private fun enableMyLocation() {
-        val locationPermission = Manifest.permission.ACCESS_FINE_LOCATION
-        if (ContextCompat.checkSelfPermission(context.applicationContext, locationPermission)
-                != PackageManager.PERMISSION_GRANTED) {
-            getLocationPermission()
-        } else if (map != null) {
-            map?.isMyLocationEnabled = true
-        }
-    }
-
-    private fun updateLocation(latLng: LatLng?) {
-        locationViewModel.updateCenterLocation(latLng)
-        mapView.getMapAsync(this)
-    }
-
-    private inner class NewRequestLocationListener : LocationListener {
-        override fun onLocationChanged(location: Location) {
-            Timber.d("Location changed: ${location.latitude}, ${location.longitude}")
-            this@NewRequestLocationFragment.updateLocation(LatLng(location.latitude, location.longitude))
-        }
-
-        override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
-        }
-
-        override fun onProviderEnabled(provider: String?) {
-            Timber.d("Provider enabled: $provider.")
-        }
-
-        override fun onProviderDisabled(provider: String?) {
+            locationText.text = "name: ${place.name}; address: ${place.address}; latLng: ${place.latLng}"
+            chooseLocationButton.text = "Change location"
         }
     }
 
@@ -137,6 +103,6 @@ class NewRequestLocationFragment : BaseStepperFragment(), OnMapReadyCallback,
             return NewRequestLocationFragment()
         }
 
-        private const val MAPVIEW_BUNDLE_KEY = "MapViewBundleKey"
+        private const val PLACE_PICKER_REQUEST = 1
     }
 }

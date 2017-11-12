@@ -1,6 +1,5 @@
 package com.chicago311.create
 
-import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
@@ -22,19 +21,16 @@ class NewRequestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         (this.application as ChicagoApplication).getAppComponent().inject(this)
         setContentView(R.layout.activity_new_request)
-        stepperLayout.setAdapter(NewRequestStepperAdapter(supportFragmentManager, this), 0)
-
         val serviceCode = savedInstanceState?.getString(EXTRA_SERVICE_CODE) ?: intent.getStringExtra(EXTRA_SERVICE_CODE)
+        val stepPosition = savedInstanceState?.getInt(EXTRA_CURRENT_STEP_POSITION) ?: 0
+        stepperLayout.setAdapter(NewRequestStepperAdapter(serviceCode, supportFragmentManager, this), stepPosition)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(NewRequestViewModel::class.java)
+        viewModel.updateServiceCode(serviceCode)
+    }
 
-        viewModel.serviceSummary
-                .observe(this, Observer {
-                    it?.let {
-                        supportActionBar?.subtitle = it.name
-                    }
-                })
-
-        viewModel.updateCode(serviceCode)
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(EXTRA_CURRENT_STEP_POSITION, stepperLayout.currentStepPosition)
     }
 
     override fun onBackPressed() {
@@ -52,5 +48,7 @@ class NewRequestActivity : AppCompatActivity() {
             intent.putExtra(EXTRA_SERVICE_CODE, code)
             return intent
         }
+
+        private const val EXTRA_CURRENT_STEP_POSITION = "extraCurrentStepPosition"
     }
 }

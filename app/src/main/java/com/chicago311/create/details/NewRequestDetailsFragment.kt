@@ -18,7 +18,7 @@ import timber.log.Timber
 
 class NewRequestDetailsFragment : BaseStepperFragment(), AttributeItemView.InputChangeListener {
 
-    private lateinit var viewModel: NewRequestViewModel // todo create newRequestDetailsViewModel
+    private lateinit var viewModel: NewRequestDetailsViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.fragment_new_request_details, container, false)
@@ -26,8 +26,37 @@ class NewRequestDetailsFragment : BaseStepperFragment(), AttributeItemView.Input
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(activity).get(NewRequestViewModel::class.java)
-        viewModel.serviceRequirements
+        viewModel = ViewModelProviders.of(activity, viewModelFactory).get(NewRequestDetailsViewModel::class.java)
+        subscribeToModel()
+        viewModel.onNewServiceCode(arguments.getString(ARG_SERVICE_REQUEST_CODE))
+    }
+
+    override fun onInputChanged(code: String?, values: List<String>?) {
+        viewModel.onInputChange(code, values)
+    }
+
+    override fun verifyStep(): VerificationError? {
+        return if (viewModel.validate()) null else VerificationError(getString(R.string.form_validation_missing_fields))
+    }
+
+    override fun saveStepData(parentViewModel: NewRequestViewModel) {
+        viewModel.onSaveData(parentViewModel)
+    }
+
+    override fun clearStepData(parentViewModel: NewRequestViewModel) {
+        viewModel.onClearData(parentViewModel)
+    }
+
+    private fun subscribeToModel() {
+        viewModel.getServiceSummary()
+                .observe(this, Observer { serviceRequest ->
+                    serviceRequest?.let { request ->
+                        activity.actionBar?.subtitle = request.name
+                        description.text = request.description
+                    }
+                })
+
+        viewModel.getServiceRequirements()
                 .observe(this, Observer<ApiResponse<ServiceRequirementResponse>> {
                     if (it != null && it.isSuccessful() && it.body != null) {
                         val requirementResponse: ServiceRequirementResponse = it.body
@@ -45,26 +74,17 @@ class NewRequestDetailsFragment : BaseStepperFragment(), AttributeItemView.Input
                         // TODO: handle unhappy
                     }
                 })
-
-        viewModel.serviceSummary
-                .observe(this, Observer {
-                    it?.let {
-                        description.text = it.description
-                    }
-                })
-    }
-
-    override fun onInputChanged(code: String?, values: List<String>?) {
-        viewModel.updateInput(code, values)
-    }
-
-    override fun verifyStep(): VerificationError? {
-        return if (viewModel.validate()) null else VerificationError(getString(R.string.form_validation_missing_fields))
     }
 
     companion object {
-        fun createFragment(): NewRequestDetailsFragment {
-            return NewRequestDetailsFragment()
+        fun createFragment(code: String): NewRequestDetailsFragment {
+            val fragment = NewRequestDetailsFragment()
+            val bundle = Bundle()
+            bundle.putString(ARG_SERVICE_REQUEST_CODE, code)
+            fragment.arguments = bundle
+            return fragment
         }
+
+        private const val ARG_SERVICE_REQUEST_CODE = "argServiceRequestCode"
     }
 }
