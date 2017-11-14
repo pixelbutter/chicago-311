@@ -16,6 +16,18 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="TextAppearance.Action" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/fontsize_body2</item>
+    </style>
+
+    <style name="TextAppearance.InputHeader" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:letterSpacing" tools:targetApi="lollipop">0.25</item>
+        <item name="android:textSize">@dimen/fontsize_footnote</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
     <style name="StepperTheme">
         <item name="ms_stepperType">tabs</item>
         <item name="ms_stepperLayoutTheme">@style/StepperTheme.DarkTab</item>
@@ -23,7 +35,7 @@
         <item name="ms_inactiveStepColor">@color/mayaBlue_54</item>
         <item name="ms_nextButtonColor">?attr/colorPrimary</item>
         <item name="ms_backButtonColor">?attr/colorPrimary</item>
-        <item name="ms_tabStepDividerWidth">56dp</item>
+        <item name="ms_tabStepDividerWidth">36dp</item>
         <item name="ms_bottomNavigationBackground">?attr/colorBackgroundSecondary</item>
         <item name="ms_showErrorStateEnabled">true</item>
         <item name="ms_showErrorMessageEnabled">true</item>

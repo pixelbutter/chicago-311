@@ -19,7 +19,7 @@ class NewRequestStepperAdapter(private val serviceRequestCode: String, fm: Fragm
         val builder = StepViewModel.Builder(context)
         when (position) {
             0 -> builder.setTitle(context.getString(R.string.tab_title_details))
-            1 -> builder.setTitle(R.string.tab_title_location)
+            1 -> builder.setTitle(R.string.tab_title_location_photos)
             2 -> {
                 builder.setTitle(R.string.tab_title_contact)
                 builder.setSubtitle(context.getString(R.string.optional))

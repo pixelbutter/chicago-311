@@ -90,8 +90,11 @@ class NewRequestLocationFragment : BaseStepperFragment(), FragmentCompat.OnReque
     }
 
     override fun verifyStep(): VerificationError? {
-        // TODO("not implemented")
-        return null
+        return if (viewModel.onValidate()) {
+            return null
+        } else {
+            VerificationError(getString(R.string.location_validation_error))
+        }
     }
 
     private fun goToPlacePicker() {

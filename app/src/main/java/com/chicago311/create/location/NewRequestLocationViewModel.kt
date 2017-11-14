@@ -26,4 +26,8 @@ class NewRequestLocationViewModel @Inject constructor() : ViewModel() {
     fun onClearData(parentViewModel: NewRequestViewModel) {
         parentViewModel.clearLocation()
     }
+
+    fun onValidate(): Boolean {
+        return selectedPlace.value?.latLng != null
+    }
 }
