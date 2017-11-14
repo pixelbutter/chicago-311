@@ -37,4 +37,7 @@
 
     <!-- location -->
     <string name="location_permission_warning">Enable current location for most accurate results</string>
+    <string name="location_pin">Location pin</string>
+    <string name="location_title_empty">Location</string>
+    <string name="location_please_select">Please select</string>
 </resources>

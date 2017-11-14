@@ -19,10 +19,14 @@ import com.chicago311.create.NewRequestViewModel
 import com.chicago311.util.isPermissionGranted
 import com.google.android.gms.location.places.Place
 import com.google.android.gms.location.places.ui.PlacePicker
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.stepstone.stepper.VerificationError
 import kotlinx.android.synthetic.main.fragment_new_request_location.*
 
 class NewRequestLocationFragment : BaseStepperFragment(), FragmentCompat.OnRequestPermissionsResultCallback {
+
     private lateinit var viewModel: NewRequestLocationViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -31,12 +35,18 @@ class NewRequestLocationFragment : BaseStepperFragment(), FragmentCompat.OnReque
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        chooseLocationButton.setOnClickListener {
+        locationContainer.setOnClickListener {
             if (activity.isPermissionGranted(Manifest.permission.ACCESS_FINE_LOCATION)) {
                 goToPlacePicker()
             } else {
                 requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_CODE_LOCATION_PERMISSION)
             }
+        }
+        locationMap.onCreate(savedInstanceState)
+        locationMap.isClickable = false
+        locationMap.getMapAsync { map ->
+            map.uiSettings.isMapToolbarEnabled = false
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(CHICAGO_CENTER_LAT_LNG, 11f))
         }
     }
 
@@ -89,12 +99,16 @@ class NewRequestLocationFragment : BaseStepperFragment(), FragmentCompat.OnReque
     }
 
     private fun handleSelectedPlace(place: Place?) {
-        if (place == null) {
-            locationText.text = "No location selected"
-            chooseLocationButton.text = "Choose location"
-        } else {
-            locationText.text = "name: ${place.name}; address: ${place.address}; latLng: ${place.latLng}"
-            chooseLocationButton.text = "Change location"
+        if (place != null && place.latLng != null) {
+            val latLng = place.latLng
+            val placeName = place.name
+            locationName.text = if (placeName.isNullOrBlank()) latLng.toString() else placeName
+            locationAddress.text = place.address
+            locationMap.getMapAsync { map ->
+                map.uiSettings.isMapToolbarEnabled = false
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18f))
+                map.addMarker(MarkerOptions().position(latLng))
+            }
         }
     }
 
@@ -104,5 +118,6 @@ class NewRequestLocationFragment : BaseStepperFragment(), FragmentCompat.OnReque
         }
 
         private const val PLACE_PICKER_REQUEST = 1
+        @JvmField internal val CHICAGO_CENTER_LAT_LNG = LatLng(41.881832, -87.623177)
     }
 }
