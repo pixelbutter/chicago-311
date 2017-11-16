@@ -1,106 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:scrollbars="vertical">
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/locationContainer"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:paddingBottom="16dp">
+        android:orientation="vertical">
 
-        <com.google.android.gms.maps.MapView
-            android:id="@+id/locationMap"
-            android:layout_width="0dp"
-            android:layout_height="160dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:liteMode="true"
-            app:mapType="normal"/>
-
-        <ImageView
-            android:id="@+id/locationPin"
-            android:layout_width="wrap_content"
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/locationContainer"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:contentDescription="@string/location_pin"
-            app:layout_constraintBottom_toBottomOf="@+id/locationAddress"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/locationName"
-            app:srcCompat="@drawable/ic_location_pin"/>
+            android:foreground="?android:attr/selectableItemBackground"
+            android:paddingBottom="16dp">
 
-        <TextView
-            android:id="@+id/locationName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/location_title_empty"
-            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/locationPin"
-            app:layout_constraintTop_toBottomOf="@+id/locationMap"/>
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/locationMap"
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:liteMode="true"
+                app:mapType="normal"/>
 
-        <TextView
-            android:id="@+id/locationAddress"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="@string/location_please_select"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/locationName"
-            app:layout_constraintTop_toBottomOf="@+id/locationName"/>
-    </android.support.constraint.ConstraintLayout>
+            <ImageView
+                android:id="@+id/locationPin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="@string/location_pin"
+                app:layout_constraintBottom_toBottomOf="@+id/locationAddress"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/locationName"
+                app:srcCompat="@drawable/ic_location_pin"/>
 
-    <include layout="@layout/view_horizontal_divider"/>
+            <TextView
+                android:id="@+id/locationName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/location_title_empty"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/locationPin"
+                app:layout_constraintTop_toBottomOf="@+id/locationMap"/>
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/addPhotosContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/locationAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/location_please_select"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/locationName"
+                app:layout_constraintTop_toBottomOf="@+id/locationName"/>
+        </android.support.constraint.ConstraintLayout>
 
-        <ImageView
-            android:id="@+id/addPhotosIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:contentDescription="@string/photos_content_description"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_cloud_upload"/>
+        <include layout="@layout/view_horizontal_divider"/>
 
-        <TextView
-            android:id="@+id/addPhotosTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:text="@string/photos_add_prompt"
-            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/addPhotosIcon"
-            app:layout_constraintTop_toTopOf="@+id/addPhotosIcon"/>
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/addPhotosContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/addPhotosText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Not implemented yet :("
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/addPhotosTitle"
-            app:layout_constraintStart_toStartOf="@+id/addPhotosTitle"
-            app:layout_constraintTop_toBottomOf="@+id/addPhotosTitle"/>
-    </android.support.constraint.ConstraintLayout>
-</LinearLayout>
+            <ImageView
+                android:id="@+id/addPhotosIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:contentDescription="@string/photos_content_description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_cloud_upload"/>
+
+            <TextView
+                android:id="@+id/addPhotosTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:text="@string/photos_add_prompt"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/addPhotosIcon"
+                app:layout_constraintTop_toTopOf="@+id/addPhotosIcon"/>
+
+            <TextView
+                android:id="@+id/addPhotosText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Not implemented yet :("
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/addPhotosTitle"
+                app:layout_constraintStart_toStartOf="@+id/addPhotosTitle"
+                app:layout_constraintTop_toBottomOf="@+id/addPhotosTitle"/>
+        </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>

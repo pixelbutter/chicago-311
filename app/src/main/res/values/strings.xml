@@ -1,4 +1,4 @@
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
     <string name="app_name">Chicago 311</string>
     <string name="title_create_request">Create request</string>
     <string name="title_create_request_short">New</string>
@@ -23,26 +23,30 @@
     <string name="tab_title_details">Details</string>
     <string name="tab_title_location_photos">Location &amp; Photos</string>
     <string name="tab_title_contact">Contact</string>
-    <string name="first_name">First name</string>
-    <string name="first_name_hint">Jane</string>
-    <string name="last_name">Last name</string>
-    <string name="last_name_hint">Doe</string>
-    <string name="email">Email</string>
-    <string name="email_hint">jane.doe@example.com</string>
-    <string name="phone">Phone number</string>
-    <string name="phone_hint">(312) 555-5555</string>
+    <!-- details -->
     <string name="form_spinner_hint">Select an item</string>
     <string name="form_required_footnote_suffix">denotes required field</string>
     <string name="form_validation_missing_fields">Please select required fields.</string>
-
     <!-- location -->
     <string name="location_permission_warning">Enable current location for most accurate results</string>
     <string name="location_pin">Location pin</string>
     <string name="location_title_empty">Location</string>
     <string name="location_please_select">Please select</string>
     <string name="location_validation_error">Please select a location</string>
-
     <!-- photos -->
     <string name="photos_add_prompt">Upload photos (optional)</string>
     <string name="photos_content_description">Add photos icon</string>
+    <!-- contact info -->
+    <string name="contact_info_description">Leave blank to submit your request anonymously.</string>
+    <string name="person_content_description">Person icon</string>
+    <string name="first_name">First name</string>
+    <string name="first_name_hint">Jane</string>
+    <string name="last_name">Last name</string>
+    <string name="last_name_hint">Doe</string>
+    <string name="email_content_description">Email icon</string>
+    <string name="email">Email</string>
+    <string name="email_hint">jane.doe@example.com</string>
+    <string name="phone_content_description">Phone icon</string>
+    <string name="phone">Phone number</string>
+    <string name="phone_hint">(312) 555–5555</string>
 </resources>

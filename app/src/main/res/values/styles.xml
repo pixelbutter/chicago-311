@@ -35,6 +35,7 @@
         <item name="ms_inactiveStepColor">@color/mayaBlue_54</item>
         <item name="ms_nextButtonColor">?attr/colorPrimary</item>
         <item name="ms_backButtonColor">?attr/colorPrimary</item>
+        <item name="ms_completeButtonColor">?attr/colorAccent</item>
         <item name="ms_tabStepDividerWidth">36dp</item>
         <item name="ms_bottomNavigationBackground">?attr/colorBackgroundSecondary</item>
         <item name="ms_showErrorStateEnabled">true</item>
