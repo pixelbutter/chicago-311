@@ -49,4 +49,9 @@
     <string name="phone_content_description">Phone icon</string>
     <string name="phone">Phone number</string>
     <string name="phone_hint">(312) 555–5555</string>
+
+    <!-- Requests -->
+    <string name="find_request_status">Lookup request</string>
+    <string name="hint_lookup_request">Request #, e.g. 17–07899877</string>
+    <string name="button_name_search">Search</string>
 </resources>
