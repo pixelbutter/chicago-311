@@ -54,4 +54,5 @@
     <string name="find_request_status">Lookup request</string>
     <string name="hint_lookup_request">Request #, e.g. 17–07899877</string>
     <string name="button_name_search">Search</string>
+    <string name="label_recent_service_requests">Recent Service Requests</string>
 </resources>

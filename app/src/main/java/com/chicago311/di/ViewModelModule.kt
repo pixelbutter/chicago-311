@@ -5,6 +5,7 @@ import com.chicago311.create.NewRequestViewModel
 import com.chicago311.create.details.NewRequestDetailsViewModel
 import com.chicago311.create.list.ServiceListViewModel
 import com.chicago311.create.location.NewRequestLocationViewModel
+import com.chicago311.requests.RequestDetailsViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -31,4 +32,9 @@ internal abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(NewRequestLocationViewModel::class)
     abstract fun provideNewRequestLocationViewModel(viewModel: NewRequestLocationViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(RequestDetailsViewModel::class)
+    abstract fun provideRequestDetailsViewModel(viewModel: RequestDetailsViewModel): ViewModel
 }

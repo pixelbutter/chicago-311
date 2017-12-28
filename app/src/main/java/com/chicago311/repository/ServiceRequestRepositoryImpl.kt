@@ -5,6 +5,7 @@ import com.chicago311.AppExecutors
 import com.chicago311.data.Resource
 import com.chicago311.data.local.ServiceRequestDatabase
 import com.chicago311.data.local.ServicesDao
+import com.chicago311.data.model.RequestDetails
 import com.chicago311.data.model.ServiceRequest
 import com.chicago311.data.model.ServiceRequirementResponse
 import com.chicago311.data.remote.ApiResponse
@@ -56,5 +57,9 @@ class ServiceRequestRepositoryImpl @Inject constructor(
     override fun getServiceRequirements(serviceCode: String): LiveData<ApiResponse<ServiceRequirementResponse>> {
         // TODO DAO?
         return apiService.getServiceDetails(serviceCode, true)
+    }
+
+    override fun getRequestDetails(requestId: String): LiveData<ApiResponse<List<RequestDetails>>> {
+        return apiService.getRequestDetails(requestId)
     }
 }

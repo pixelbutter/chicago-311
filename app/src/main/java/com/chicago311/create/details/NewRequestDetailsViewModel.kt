@@ -18,15 +18,10 @@ class NewRequestDetailsViewModel @Inject constructor(val repository: ServiceRequ
     private val requiredInputMap: MutableMap<String, List<String>?> = mutableMapOf()
     private val optionalInputMap: MutableMap<String, List<String>?> = mutableMapOf()
     private val serviceCode = MutableLiveData<String>()
-    private val serviceRequirements = Transformations.switchMap(serviceCode, {
-        repository.getServiceRequirements(it)
-    })
-    private val serviceSummary = Transformations.switchMap(serviceCode, {
-        repository.getServiceSummary(it)
-    })
+    private val serviceRequirements = Transformations.switchMap(serviceCode, { repository.getServiceRequirements(it) })
+    private val serviceSummary = Transformations.switchMap(serviceCode, { repository.getServiceSummary(it) })
 
     fun getServiceSummary(): LiveData<ServiceRequest> = serviceSummary
-
     fun getServiceRequirements(): LiveData<ApiResponse<ServiceRequirementResponse>> = serviceRequirements
 
     fun initializeInputMap(attributesResponse: List<ServiceRequestAttribute>) {

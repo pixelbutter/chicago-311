@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import com.chicago311.create.list.NewRequestListFragment
 import com.chicago311.help.HelpFragment
-import com.chicago311.requests.RequestsFragment
+import com.chicago311.requests.RequestsLookupFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navigation_requests -> {
                     toolbarTitle = getString(R.string.title_lookup_requests)
-                    newFragment = RequestsFragment.newInstance()
+                    newFragment = RequestsLookupFragment.newInstance()
                     selected = true
                     showExpandedToolbar = false
                 }

@@ -30,7 +30,12 @@
             android:label="@string/title_new_request"
             android:parentActivityName=".MainActivity"/>
 
-        <!-- todo remove key -->
+        <activity
+            android:name=".requests.RequestDetailsActivity"
+            android:label="@string/title_request_details"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.CloseAsUp"/>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDkvjKkprcPf24S6MJmFujaGaefKfPRGcE"/>

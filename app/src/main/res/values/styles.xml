@@ -16,6 +16,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppTheme.CloseAsUp">
+        <item name="android:homeAsUpIndicator">@drawable/ic_close</item>
+    </style>
+
     <style name="TextAppearance.Action" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/colorAccent</item>

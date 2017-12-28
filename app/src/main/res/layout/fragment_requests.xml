@@ -1,4 +1,4 @@
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -6,25 +6,26 @@
     android:scrollbars="vertical">
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/searchContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="16dp"
         android:background="?android:attr/colorBackground"
         android:elevation="1dp"
+        android:paddingBottom="16dp"
         tools:targetApi="lollipop">
 
         <EditText
             android:id="@+id/findRequestInput"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@string/hint_lookup_request"
+            android:hint="@string/hint_lookup_request"
+            app:layout_constraintEnd_toStartOf="@+id/findRequestSearchButton"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/findRequestSearchButton"/>
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <Button
             android:id="@+id/findRequestSearchButton"
@@ -39,4 +40,15 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/findRequestInput"/>
     </android.support.constraint.ConstraintLayout>
-</android.support.v4.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/recentRequestsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/label_recent_service_requests"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchContainer"/>
+</android.support.constraint.ConstraintLayout>
