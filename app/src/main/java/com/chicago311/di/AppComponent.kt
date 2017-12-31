@@ -6,6 +6,7 @@ import com.chicago311.create.details.NewRequestDetailsViewModel
 import com.chicago311.create.list.NewRequestListFragment
 import com.chicago311.create.location.NewRequestLocationFragment
 import com.chicago311.requests.RequestDetailsActivity
+import com.chicago311.requests.RequestsLookupFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -21,6 +22,8 @@ interface AppComponent {
     fun inject(fragment: NewRequestLocationFragment)
 
     fun inject(activity: NewRequestActivity)
+
+    fun inject(fragment: RequestsLookupFragment)
 
     fun inject(activity: RequestDetailsActivity)
 }

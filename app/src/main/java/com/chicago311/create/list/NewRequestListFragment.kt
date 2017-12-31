@@ -21,9 +21,7 @@ class NewRequestListFragment : Fragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: ServiceListViewModel
-    private var listAdapter = ServicesViewAdapter(ArrayList()) {
-        startActivity(NewRequestActivity.createIntent(activity, it))
-    }
+    private var listAdapter = ServicesViewAdapter(ArrayList(), { startActivity(NewRequestActivity.createIntent(activity, it)) })
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_new_request_list, container, false)
