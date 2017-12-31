@@ -16,6 +16,7 @@ import com.chicago311.R
 import kotlinx.android.synthetic.main.fragment_requests.*
 import javax.inject.Inject
 
+
 class RequestsLookupFragment : Fragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory

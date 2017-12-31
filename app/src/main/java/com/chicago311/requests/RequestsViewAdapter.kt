@@ -29,6 +29,8 @@ class RequestsViewAdapter(private var requests: ArrayList<RequestSummary>,
     class ViewHolder(view: View, val itemClick: (String) -> Unit) : RecyclerView.ViewHolder(view) {
         fun bind(requestSummary: RequestSummary) {
             val requestId = requestSummary.requestId
+            itemView.requestItemTitle.text = requestSummary.serviceName
+            itemView.requestItemStatus.text = requestSummary.status
             itemView.requestItemId.text = requestId
             itemView.setOnClickListener { itemClick(requestId) }
         }
