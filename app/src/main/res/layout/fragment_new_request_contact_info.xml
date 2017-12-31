@@ -45,7 +45,7 @@
             app:layout_constraintTop_toTopOf="@+id/iconPerson"/>
 
         <EditText
-            android:id="@+id/firstNameEditText"
+            android:id="@+id/contactAddress"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -56,7 +56,7 @@
             app:layout_constraintTop_toBottomOf="@+id/firstNameTitle"/>
 
         <TextView
-            android:id="@+id/lastNameTitle"
+            android:id="@+id/contactPhoneNumber"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -66,7 +66,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iconPerson"
-            app:layout_constraintTop_toBottomOf="@+id/firstNameEditText"/>
+            app:layout_constraintTop_toBottomOf="@+id/contactAddress"/>
 
         <EditText
             android:id="@+id/lastNameEditText"
@@ -76,8 +76,8 @@
             android:hint="@string/last_name_hint"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/lastNameTitle"
-            app:layout_constraintTop_toBottomOf="@+id/lastNameTitle"/>
+            app:layout_constraintStart_toStartOf="@+id/contactPhoneNumber"
+            app:layout_constraintTop_toBottomOf="@+id/contactPhoneNumber"/>
 
         <ImageView
             android:id="@+id/iconEmail"

@@ -1,10 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
+    android:scrollbars="vertical">
 
-    <TextView
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Help"/>
-</android.support.v4.widget.NestedScrollView>
+        android:layout_height="wrap_content"
+        android:padding="24dp">
+
+        <ImageView
+            android:id="@+id/contactIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/contact_icon_content_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_contact_phone"/>
+
+        <TextView
+            android:id="@+id/contactName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/contact_name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/contactIcon"
+            app:layout_constraintTop_toTopOf="@+id/contactIcon"/>
+
+        <TextView
+            android:id="@+id/contactAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:autoLink="map"
+            android:text="@string/contact_address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/contactName"
+            app:layout_constraintTop_toBottomOf="@+id/contactName"/>
+
+        <ImageView
+            android:id="@+id/callIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:contentDescription="@string/phone_content_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contactIcon"
+            app:srcCompat="@drawable/ic_phone"/>
+
+        <TextView
+            android:id="@+id/callPhoneNumberLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/call_phone_number_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/callIcon"
+            app:layout_constraintTop_toTopOf="@+id/callIcon"/>
+
+        <TextView
+            android:id="@+id/callPhoneNumberShort"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="@string/call_phone_number_in"
+            android:autoLink="phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/callPhoneNumberLabel"
+            app:layout_constraintTop_toBottomOf="@+id/callPhoneNumberLabel"/>
+
+        <TextView
+            android:id="@+id/callPhoneNumberLong"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="@string/call_phone_number_out"
+            android:autoLink="phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/callPhoneNumberShort"
+            app:layout_constraintTop_toBottomOf="@+id/callPhoneNumberShort"/>
+
+        <ImageView
+            android:id="@+id/additionalInfoIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:contentDescription="@string/additional_info_content_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/callPhoneNumberLong"
+            app:srcCompat="@drawable/ic_info_accent"/>
+
+        <TextView
+            android:id="@+id/additionalInfoLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/additional_info_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/additionalInfoIcon"
+            app:layout_constraintTop_toTopOf="@+id/additionalInfoIcon"/>
+
+        <TextView
+            android:id="@+id/additionalInfoFaq"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="@string/additional_info_faq_link"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/additionalInfoLabel"
+            app:layout_constraintTop_toBottomOf="@+id/additionalInfoLabel"/>
+
+        <TextView
+            android:id="@+id/additionalInfoFullSite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="@string/additional_info_full_site"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/additionalInfoFaq"
+            app:layout_constraintTop_toBottomOf="@+id/additionalInfoFaq"/>
+
+        <TextView
+            android:id="@+id/callWhenLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/call_when_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/additionalInfoFullSite"
+            app:layout_constraintTop_toBottomOf="@+id/additionalInfoFullSite"/>
+
+        <TextView
+            android:id="@+id/callWhenValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="@string/call_when_value"
+            android:autoLink="all"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/callWhenLabel"
+            app:layout_constraintTop_toBottomOf="@+id/callWhenLabel"
+            tools:text="Call when..."/>
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

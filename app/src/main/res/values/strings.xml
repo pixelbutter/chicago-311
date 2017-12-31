@@ -56,4 +56,26 @@
     <string name="button_name_search">Search</string>
     <string name="label_recent_service_requests">Recent service requests</string>
     <string name="label_look_up_service_requests">Look up request</string>
+
+    <!-- Help -->
+    <string name="contact_icon_content_description">Contact info icon</string>
+    <string name="contact_name">311 City Services</string>
+    <string name="contact_address">2111 W. Lexington Street, Chicago, IL 60612</string>
+    <string name="call_phone_number_label">Phone Number</string>
+    <string name="call_phone_number_in">Within Chicago area: 311</string>
+    <string name="call_phone_number_out">Outside Chicago area: 312.744.5000</string>
+    <string name="call_when_label">When to call</string>
+    <string name="call_when_value"><![CDATA[Call 311 if you want to…<br/>
+        <li>Find services and programs within the City of Chicago, or to find the appropriate department or agency to direct your questions and/or concerns.</li>
+        <li>Request numerous City Services. Some of these services include, but are not limited to request garbage carts, report stray animals, report abandoned vehicles and more.</li>
+        <li>Request information about <a title="Cultural Affairs &amp; Special Events" href="http://www.cityofchicago.org/city/en/depts/dca.html">City and neighborhood events, including parades, Grant and Millennium Parks festivals</a>, and Chicago Public Library programs. Also visit <a title="Choose Chicago" href="http://www.choosechicago.com/">choosechicago.com </a>more to find more exciting activities happening everyday around Chicago.</li>
+        <li>Find out what <a title="Chicago Police Department" href="https://portal.chicagopolice.org/portal/page/portal/ClearPath"> Police</a> District and beat you live in, as well as the date, time and location of your next beat meeting.</li>
+        <li>File a non-emergency police report or talk to police personnel in your district. Remember, dial 311 if the incident that you are reporting has occurred and the offender is gone from the scene; however, dial 911 if the incident you are reporting is in progress and the presence of a police officer will help resolve the matter.</li>
+        <li>Find out what political district you live in (federal, state or municipal), as well as the name, address and telephone number of your <a title="Find Your Alderman" href="http://www.cityofchicago.org/city/en/about/council.html">Alderman</a> so you can forward your questions and/or concerns directly.</li>
+        <li>Request shelter information &amp; assistance and information about homelessness prevention. It is important to relay as much information as possible to the operator so that the City can service you as quickly and efficiently as possible.&nbsp; The City of Chicago offers residents a variety of options designed to help improve their quality of life, including the "Home Ownership Preservation Initiative (HOPI)" and the "Homelessness Prevention Call Center (HPCC)."</li>
+    ]]></string>
+    <string name="additional_info_label">Additional Info</string>
+    <string name="additional_info_faq_link"><a href="https://www.cityofchicago.org/city/en/depts/311/supp_info/faq.html">Frequently Asked Questions</a></string>
+    <string name="additional_info_full_site"><a href="https://www.cityofchicago.org/city/en/depts/311.html">Full site</a></string>
+    <string name="additional_info_content_description">Additional info icon</string>
 </resources>
