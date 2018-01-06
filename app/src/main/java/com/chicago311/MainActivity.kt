@@ -61,10 +61,10 @@ class MainActivity : AppCompatActivity() {
         appbar.setExpanded(showExpandedToolbar, true)
         selectedItemId = newItemId
         fragment = newFragment
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragmentContainer, fragment)
-        // todo support back stack
-        transaction.commit()
+        // todo handle backstack
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, newFragment)
+                .commit()
     }
 
     private inner class BottomNavClickListener : BottomNavigationView.OnNavigationItemSelectedListener {
