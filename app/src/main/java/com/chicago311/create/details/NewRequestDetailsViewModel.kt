@@ -5,9 +5,9 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Transformations
 import android.arch.lifecycle.ViewModel
 import com.chicago311.create.NewRequestViewModel
-import com.chicago311.data.model.ServiceRequest
+import com.chicago311.data.model.CityService
 import com.chicago311.data.model.ServiceRequestAttribute
-import com.chicago311.data.model.ServiceRequirementResponse
+import com.chicago311.data.model.CityServiceRequirementResponse
 import com.chicago311.data.remote.ApiResponse
 import com.chicago311.repository.ServiceRequestRepository
 import timber.log.Timber
@@ -21,8 +21,8 @@ class NewRequestDetailsViewModel @Inject constructor(val repository: ServiceRequ
     private val serviceRequirements = Transformations.switchMap(serviceCode, { repository.getServiceRequirements(it) })
     private val serviceSummary = Transformations.switchMap(serviceCode, { repository.getServiceSummary(it) })
 
-    fun getServiceSummary(): LiveData<ServiceRequest> = serviceSummary
-    fun getServiceRequirements(): LiveData<ApiResponse<ServiceRequirementResponse>> = serviceRequirements
+    fun getServiceSummary(): LiveData<CityService> = serviceSummary
+    fun getServiceRequirements(): LiveData<ApiResponse<CityServiceRequirementResponse>> = serviceRequirements
 
     fun initializeInputMap(attributesResponse: List<ServiceRequestAttribute>) {
         attributesResponse.forEach { requestAttribute ->

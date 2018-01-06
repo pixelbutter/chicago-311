@@ -2,7 +2,7 @@ package com.chicago311.data.model
 
 import com.squareup.moshi.Json
 
-data class NewServiceRequestParams(
+data class NewCityRequestParams(
         @Json(name = "service_code")
         val serviceCode: String = "",
         val attributes: String = "", // todo

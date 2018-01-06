@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.chicago311.R
-import com.chicago311.data.model.ServiceRequest
+import com.chicago311.data.model.CityService
 import kotlinx.android.synthetic.main.item_service_request.view.*
 
-class ServicesViewAdapter(private var services: ArrayList<ServiceRequest>,
+class ServicesViewAdapter(private var cityServices: ArrayList<CityService>,
                           private val itemClick: (String) -> Unit) : RecyclerView.Adapter<ServicesViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -16,23 +16,23 @@ class ServicesViewAdapter(private var services: ArrayList<ServiceRequest>,
         return ViewHolder(view, itemClick)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bindService(services[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bindService(cityServices[position])
 
-    override fun getItemCount() = services.size
+    override fun getItemCount() = cityServices.size
 
-    fun updateData(newData: List<ServiceRequest>) {
-        services.clear()
-        services.addAll(newData)
+    fun updateData(newData: List<CityService>) {
+        cityServices.clear()
+        cityServices.addAll(newData)
         notifyDataSetChanged()
     }
 
     class ViewHolder(view: View, val itemClick: (String) -> Unit) : RecyclerView.ViewHolder(view) {
 
         // todo handle null case
-        fun bindService(serviceRequest: ServiceRequest) {
-            itemView.serviceName.text = serviceRequest.name
-            itemView.serviceCategory.text = serviceRequest.group
-            itemView.setOnClickListener { itemClick(serviceRequest.code) }
+        fun bindService(cityService: CityService) {
+            itemView.serviceName.text = cityService.name
+            itemView.serviceCategory.text = cityService.group
+            itemView.setOnClickListener { itemClick(cityService.code) }
         }
     }
 }

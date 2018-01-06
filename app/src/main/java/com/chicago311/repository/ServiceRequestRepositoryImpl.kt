@@ -5,10 +5,10 @@ import com.chicago311.AppExecutors
 import com.chicago311.data.Resource
 import com.chicago311.data.local.ServiceRequestDatabase
 import com.chicago311.data.local.ServicesDao
-import com.chicago311.data.model.RequestDetails
-import com.chicago311.data.model.RequestSummary
-import com.chicago311.data.model.ServiceRequest
-import com.chicago311.data.model.ServiceRequirementResponse
+import com.chicago311.data.model.CityRequestDetails
+import com.chicago311.data.model.CityRequestSummary
+import com.chicago311.data.model.CityService
+import com.chicago311.data.model.CityServiceRequirementResponse
 import com.chicago311.data.remote.ApiResponse
 import com.chicago311.data.remote.ServiceRequestService
 import timber.log.Timber
@@ -20,10 +20,10 @@ class ServiceRequestRepositoryImpl @Inject constructor(
         private val db: ServiceRequestDatabase,
         private val dao: ServicesDao) : ServiceRequestRepository {
 
-    override fun getAvailableServices(): LiveData<Resource<List<ServiceRequest>>> {
-        return object : NetworkBoundResource<List<ServiceRequest>, List<ServiceRequest>>(appExecutors) {
+    override fun getAvailableServices(): LiveData<Resource<List<CityService>>> {
+        return object : NetworkBoundResource<List<CityService>, List<CityService>>(appExecutors) {
 
-            override fun saveCallResult(item: List<ServiceRequest>?) {
+            override fun saveCallResult(item: List<CityService>?) {
                 db.beginTransaction()
                 try {
                     if (item != null) dao.insertServices(item)
@@ -33,38 +33,38 @@ class ServiceRequestRepositoryImpl @Inject constructor(
                 }
             }
 
-            override fun shouldFetch(data: List<ServiceRequest>?): Boolean {
+            override fun shouldFetch(data: List<CityService>?): Boolean {
                 val shouldLoad = data == null || data.isEmpty()
                 Timber.d("Should load: $shouldLoad")
                 return shouldLoad
             }
 
-            override fun loadFromDb(): LiveData<List<ServiceRequest>> {
+            override fun loadFromDb(): LiveData<List<CityService>> {
                 Timber.d("Loading data from db")
                 return dao.getAllServices()
             }
 
-            override fun createCall(): LiveData<ApiResponse<List<ServiceRequest>>> {
+            override fun createCall(): LiveData<ApiResponse<List<CityService>>> {
                 Timber.d("Making service call")
                 return apiService.getAvailableServices()
             }
         }.asLiveData()
     }
 
-    override fun getServiceSummary(serviceCode: String): LiveData<ServiceRequest> {
+    override fun getServiceSummary(serviceCode: String): LiveData<CityService> {
         return dao.getServiceSummary(serviceCode)
     }
 
-    override fun getServiceRequirements(serviceCode: String): LiveData<ApiResponse<ServiceRequirementResponse>> {
+    override fun getServiceRequirements(serviceCode: String): LiveData<ApiResponse<CityServiceRequirementResponse>> {
         // TODO DAO?
         return apiService.getServiceDetails(serviceCode, true)
     }
 
-    override fun getRequestDetails(requestId: String): LiveData<ApiResponse<List<RequestDetails>>> {
+    override fun getRequestDetails(requestId: String): LiveData<ApiResponse<List<CityRequestDetails>>> {
         return apiService.getRequestDetails(requestId)
     }
 
-    override fun getRecentRequests(): LiveData<ApiResponse<List<RequestSummary>>> {
+    override fun getRecentRequests(): LiveData<ApiResponse<List<CityRequestSummary>>> {
         return apiService.getRecentRequests()
     }
 }

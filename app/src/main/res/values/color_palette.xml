@@ -10,6 +10,17 @@
     <color name="mayaBlue_54">#8A73C2FB</color>
     <color name="mayaBlue_38">#6173C2FB</color>
 
+    <color name="malachite">#60C198</color>
+    <color name="malachite_87">#DE60C198</color>
+    <color name="malachite_54">#8A60C198</color>
+    <color name="malachite_38">#6160C198</color>
+
+    <color name="blackGrape">#2D3142</color>
+    <color name="blackGrape_87">#DE2D3142</color>
+    <color name="blackGrape_54">#8A2D3142</color>
+    <color name="blackGrape_38">#612D3142</color>
+    <color name="blackerGrape">#1F212D</color>
+
     <color name="platinum">#E0E0E0</color>
 
     <color name="white">#FFFFFF</color>

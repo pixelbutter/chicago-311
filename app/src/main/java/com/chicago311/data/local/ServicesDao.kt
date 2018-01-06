@@ -5,7 +5,7 @@ import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
-import com.chicago311.data.model.ServiceRequest
+import com.chicago311.data.model.CityService
 
 @Dao
 interface ServicesDao {
@@ -13,17 +13,17 @@ interface ServicesDao {
     // todo group by type?
 
     @Query("SELECT * FROM services")
-    fun getAllServices(): LiveData<List<ServiceRequest>>
+    fun getAllServices(): LiveData<List<CityService>>
 
     @Query("SELECT * FROM services WHERE service_code = :serviceCode")
-    fun getServiceSummary(serviceCode: String): LiveData<ServiceRequest>
+    fun getServiceSummary(serviceCode: String): LiveData<CityService>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertServices(services: List<ServiceRequest>)
+    fun insertServices(cityServices: List<CityService>)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun createServiceIfNotExists(service: ServiceRequest)
+    fun createServiceIfNotExists(cityService: CityService)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertService(serviceRequest: ServiceRequest)
+    fun insertService(cityService: CityService)
 }

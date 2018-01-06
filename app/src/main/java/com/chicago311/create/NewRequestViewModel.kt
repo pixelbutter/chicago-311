@@ -1,13 +1,13 @@
 package com.chicago311.create
 
 import android.arch.lifecycle.ViewModel
-import com.chicago311.data.model.NewServiceRequestParams
+import com.chicago311.data.model.NewCityRequestParams
 import com.google.android.gms.location.places.Place
 import javax.inject.Inject
 
 class NewRequestViewModel @Inject constructor() : ViewModel() {
 
-    private var requestParams = NewServiceRequestParams()
+    private var requestParams = NewCityRequestParams()
 
     fun updateServiceCode(serviceCode: String) {
         if (requestParams.serviceCode != serviceCode) {

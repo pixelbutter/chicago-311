@@ -7,6 +7,7 @@ import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.view.MenuItem
 import com.chicago311.create.list.NewRequestListFragment
 import com.chicago311.help.HelpFragment
 import com.chicago311.requests.RequestsLookupFragment
@@ -14,55 +15,86 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var fragment: Fragment
+    private var title: String? = null
+    private var selectedItemId = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         appbar.addOnOffsetChangedListener(AppBarScrollListener(toolbar = mainToolbar, collapsingToolbar = collapsingToolbar))
+        navigation.setOnNavigationItemSelectedListener(BottomNavClickListener())
 
-        // Todo check currently selected fragment before creating a new one
-        navigation.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        var fragment: Fragment? = null
+        var title: String? = null
+        var newItemId = -1
+        var expanded = false
+        savedInstanceState?.apply {
+            newItemId = getInt(EXTRA_SELECTED_TAB_ID, -1)
+            title = getString(EXTRA_SELECTED_TITLE)
+            fragment = supportFragmentManager.getFragment(this, TAG_MAIN_FRAGMENT)
+        }
+        // todo clean up
+        if (fragment == null || newItemId == -1) {
+            fragment = NewRequestListFragment.newInstance()
+            title = getString(R.string.title_create_request)
+            newItemId = R.id.navigation_new_request
+            expanded = true
+        }
+
+        updateSelectedTab(fragment!!, newItemId, title, expanded)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(EXTRA_SELECTED_TAB_ID, selectedItemId)
+        outState.putString(EXTRA_SELECTED_TITLE, title)
+        supportFragmentManager.putFragment(outState, TAG_MAIN_FRAGMENT, fragment)
+    }
+
+    private fun updateSelectedTab(newFragment: Fragment, newItemId: Int, title: String?, showExpandedToolbar: Boolean) {
+        this.title = title
+        if (!title.isNullOrBlank()) {
+            mainToolbar.title = title
+            collapsingToolbar.title = title
+        }
+        appbar.setExpanded(showExpandedToolbar, true)
+        selectedItemId = newItemId
+        fragment = newFragment
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragmentContainer, fragment)
+        // todo support back stack
+        transaction.commit()
+    }
+
+    private inner class BottomNavClickListener : BottomNavigationView.OnNavigationItemSelectedListener {
+        override fun onNavigationItemSelected(item: MenuItem): Boolean {
             val newFragment: Fragment
-            val selected: Boolean
             val showExpandedToolbar: Boolean
             val toolbarTitle: String
+
             when (item.itemId) {
-                R.id.navigation_new_request -> {
-                    toolbarTitle = getString(R.string.title_create_request)
-                    newFragment = NewRequestListFragment.newInstance()
-                    selected = true
-                    showExpandedToolbar = true
-                }
+                selectedItemId -> return true
                 R.id.navigation_requests -> {
                     toolbarTitle = getString(R.string.title_lookup_requests)
                     newFragment = RequestsLookupFragment.newInstance()
-                    selected = true
                     showExpandedToolbar = false
                 }
                 R.id.navigation_help -> {
                     toolbarTitle = getString(R.string.title_help)
                     newFragment = HelpFragment.newInstance()
-                    selected = true
                     showExpandedToolbar = false
                 }
-                else -> {
-                    toolbarTitle = getString(R.string.app_name)
+                R.id.navigation_new_request -> {
+                    toolbarTitle = getString(R.string.title_create_request)
                     newFragment = NewRequestListFragment.newInstance()
-                    selected = false
-                    showExpandedToolbar = false
+                    showExpandedToolbar = true
                 }
+                else -> return true
             }
-
-            mainToolbar.title = toolbarTitle
-            appbar.setExpanded(showExpandedToolbar, true)
-            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, newFragment).commit()
-            return@OnNavigationItemSelectedListener selected
-        })
-
-        val transaction = supportFragmentManager.beginTransaction()
-        mainToolbar.title = getString(R.string.title_create_request)
-        collapsingToolbar.title = getString(R.string.title_create_request)
-        transaction.replace(R.id.fragmentContainer, NewRequestListFragment.newInstance())
-        transaction.commit()
+            updateSelectedTab(newFragment, item.itemId, toolbarTitle, showExpandedToolbar)
+            return true
+        }
     }
 
     private class AppBarScrollListener(val toolbar: Toolbar,
@@ -82,5 +114,11 @@ class MainActivity : AppCompatActivity() {
                 shown = false
             }
         }
+    }
+
+    companion object {
+        private const val TAG_MAIN_FRAGMENT = "fragmentTagMain"
+        private const val EXTRA_SELECTED_TAB_ID = "extraBottomNavItemId"
+        private const val EXTRA_SELECTED_TITLE = "extraSelectedTitle"
     }
 }

@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.chicago311.R
 import com.chicago311.create.BaseStepperFragment
 import com.chicago311.create.NewRequestViewModel
-import com.chicago311.data.model.ServiceRequirementResponse
+import com.chicago311.data.model.CityServiceRequirementResponse
 import com.chicago311.data.remote.ApiResponse
 import com.chicago311.util.setTextWithAsteriskBefore
 import com.stepstone.stepper.VerificationError
@@ -57,9 +57,9 @@ class NewRequestDetailsFragment : BaseStepperFragment(), AttributeItemView.Input
                 })
 
         viewModel.getServiceRequirements()
-                .observe(this, Observer<ApiResponse<ServiceRequirementResponse>> {
+                .observe(this, Observer<ApiResponse<CityServiceRequirementResponse>> {
                     if (it != null && it.isSuccessful() && it.body != null) {
-                        val requirementResponse: ServiceRequirementResponse = it.body
+                        val requirementResponse: CityServiceRequirementResponse = it.body
                         requirementResponse.attributes?.let {
                             viewModel.initializeInputMap(it)
                             val adapter = AttributeArrayAdapter(context, it, this)

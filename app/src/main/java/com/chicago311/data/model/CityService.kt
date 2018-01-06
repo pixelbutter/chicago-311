@@ -6,7 +6,7 @@ import com.squareup.moshi.Json
 
 @Entity(tableName = "services",
         primaryKeys = arrayOf("service_code"))
-data class ServiceRequest(
+data class CityService(
         @ColumnInfo(name = "service_code")
         @Json(name = "service_code")
         val code: String,
