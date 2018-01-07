@@ -9,7 +9,7 @@
     <item
         android:id="@+id/navigation_requests"
         android:icon="@drawable/ic_assignment_done"
-        android:title="@string/title_lookup_requests_short"/>
+        android:title="@string/title_look_up_requests_short"/>
 
     <item
         android:id="@+id/navigation_help"

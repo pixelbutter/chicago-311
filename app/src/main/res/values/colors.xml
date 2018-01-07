@@ -9,4 +9,5 @@
 
     <color name="requestStatusOpen">@color/blackGrape_87</color>
     <color name="requestStatusClosed">@color/malachite</color>
+    <color name="requestStatusOther">@color/blackGrape_87</color>
 </resources>

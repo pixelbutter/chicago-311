@@ -16,7 +16,6 @@ import com.chicago311.R
 import kotlinx.android.synthetic.main.fragment_requests.*
 import javax.inject.Inject
 
-
 class RequestsLookupFragment : Fragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -30,7 +29,7 @@ class RequestsLookupFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         (activity.application as ChicagoApplication).getAppComponent().inject(this)
-        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_lookup_requests)
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_look_up_requests)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(RequestsLookupViewModel::class.java)
         setupViews()
 

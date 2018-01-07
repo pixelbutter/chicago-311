@@ -8,10 +8,10 @@ private const val STATUS_OPEN = "open"
 private const val STATUS_CLOSED = "closed"
 
 data class CityRequestSummary(@Json(name = "service_request_id")
-                          val requestId: String,
+                              val requestId: String,
                               val status: String,
                               @Json(name = "service_name")
-                          val serviceName: String)
+                              val serviceName: String)
 
 data class CityRequestDetails(
         @Json(name = "service_request_id")
@@ -33,10 +33,11 @@ data class CityRequestDetails(
         val mediaUrl: String?
 )
 
-@ColorRes fun getStatusColor(status: String): Int {
+@ColorRes
+fun getStatusColor(status: String): Int {
     return when (status) {
         STATUS_OPEN -> R.color.requestStatusOpen
         STATUS_CLOSED -> R.color.requestStatusClosed
-        else -> R.color.white
+        else -> R.color.requestStatusOther
     }
 }

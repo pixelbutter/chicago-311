@@ -2,8 +2,8 @@
     <string name="app_name">Chicago 311</string>
     <string name="title_create_request">Create request</string>
     <string name="title_create_request_short">New</string>
-    <string name="title_lookup_requests">Lookup requests</string>
-    <string name="title_lookup_requests_short">Requests</string>
+    <string name="title_look_up_requests">Find request</string>
+    <string name="title_look_up_requests_short">Requests</string>
     <string name="title_new_request">New request</string>
     <string name="title_help">Help</string>
 
@@ -51,12 +51,15 @@
     <string name="phone_hint">(312) 555–5555</string>
 
     <!-- Requests -->
-    <string name="find_request_status">Lookup request</string>
-    <string name="hint_lookup_request">Request #, e.g. 17–07899877</string>
+    <string name="find_request_status">Look up request</string>
+    <string name="hint_look_up_request">Request #, e.g. 17–07899877</string>
     <string name="button_name_search">Search</string>
     <string name="label_recent_service_requests">Recent service requests</string>
     <string name="label_look_up_service_requests">Look up request</string>
     <string name="request_number">#%1$s</string>
+    <string name="label_agency_responsible">Reviewed by %1$s</string>
+    <string name="label_request_creation_date">Created:</string>
+    <string name="label_request_updated_date">Updated:</string>
 
     <!-- Help -->
     <string name="contact_icon_content_description">Contact info icon</string>

@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 selectedItemId -> return true
                 R.id.navigation_requests -> {
-                    toolbarTitle = getString(R.string.title_lookup_requests)
+                    toolbarTitle = getString(R.string.title_look_up_requests)
                     newFragment = RequestsLookupFragment.newInstance()
                     showExpandedToolbar = false
                 }
